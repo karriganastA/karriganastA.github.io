@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>❤ karriganasta&#39;s blog ❤</title>
+  
+  <subtitle>infinite OI road.</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2018-02-07T00:04:57.035Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>karriganasta</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>haha</title>
+    <link href="http://yoursite.com/2018/02/07/haha/"/>
+    <id>http://yoursite.com/2018/02/07/haha/</id>
+    <published>2018-02-07T00:04:57.000Z</published>
+    <updated>2018-02-07T00:04:57.035Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
