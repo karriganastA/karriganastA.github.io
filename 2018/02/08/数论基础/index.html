@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="-"学习笔记" -"数学" -"数论"," />
 
 
 
@@ -81,16 +81,18 @@
 
 
 
-<meta name="description" content="an ordinary OIer.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="❤ karriganasta&#39;s blog ❤">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="基本概念及代码质数质数也称素数,即恰好包含两个不同因子的整数.（好智障啊）1 不是质数.判断单个数是否为质数.如下. 12345678bool is_prime(int x)&amp;#123;	if (x &amp;lt;= 1) return 0;	if (x == 2) return 1;	for (int i = 2; i &amp;lt;= sqrt(x+0.5); i++) //用Sqrt(x+0.5)防止精">
+<meta name="keywords" content="-&quot;学习笔记&quot; -&quot;数学&quot; -&quot;数论&quot;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数论基础">
+<meta property="og:url" content="http://yoursite.com/2018/02/08/数论基础/index.html">
 <meta property="og:site_name" content="❤ karriganasta&#39;s blog ❤">
-<meta property="og:description" content="an ordinary OIer.">
+<meta property="og:description" content="基本概念及代码质数质数也称素数,即恰好包含两个不同因子的整数.（好智障啊）1 不是质数.判断单个数是否为质数.如下. 12345678bool is_prime(int x)&amp;#123;	if (x &amp;lt;= 1) return 0;	if (x == 2) return 1;	for (int i = 2; i &amp;lt;= sqrt(x+0.5); i++) //用Sqrt(x+0.5)防止精">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-08T10:39:41.749Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="❤ karriganasta&#39;s blog ❤">
-<meta name="twitter:description" content="an ordinary OIer.">
+<meta name="twitter:title" content="数论基础">
+<meta name="twitter:description" content="基本概念及代码质数质数也称素数,即恰好包含两个不同因子的整数.（好智障啊）1 不是质数.判断单个数是否为质数.如下. 12345678bool is_prime(int x)&amp;#123;	if (x &amp;lt;= 1) return 0;	if (x == 2) return 1;	for (int i = 2; i &amp;lt;= sqrt(x+0.5); i++) //用Sqrt(x+0.5)防止精">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/02/08/数论基础/"/>
 
 
 
 
 
-  <title>❤ karriganasta's blog ❤</title>
+  <title>数论基础 | ❤ karriganasta's blog ❤</title>
   
 
 
@@ -145,8 +147,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
     <a href="https://github.com/karriganastA"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -239,9 +240,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -271,9 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/08/数论基础/" itemprop="url">数论基础</a></h1>
+          <h1 class="post-title" itemprop="name headline">数论基础</h1>
         
 
         <div class="post-meta">
@@ -345,9 +344,7 @@
       
 
       
-        
-          
-            <h2 id="基本概念及代码"><a href="#基本概念及代码" class="headerlink" title="基本概念及代码"></a>基本概念及代码</h2><h4 id="质数"><a href="#质数" class="headerlink" title="质数"></a>质数</h4><p>质数也称素数,即恰好包含两个不同因子的整数.（好智障啊）<br>1 不是质数.<br>判断单个数是否为质数.<br>如下.</p>
+        <h2 id="基本概念及代码"><a href="#基本概念及代码" class="headerlink" title="基本概念及代码"></a>基本概念及代码</h2><h4 id="质数"><a href="#质数" class="headerlink" title="质数"></a>质数</h4><p>质数也称素数,即恰好包含两个不同因子的整数.（好智障啊）<br>1 不是质数.<br>判断单个数是否为质数.<br>如下.</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">is_prime</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (x &lt;= <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (x == <span class="number">2</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= <span class="built_in">sqrt</span>(x+<span class="number">0.5</span>); i++) <span class="comment">//用Sqrt(x+0.5)防止精度失真</span></span><br><span class="line">	<span class="keyword">if</span> (x % i == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>每次的时间复杂度为 O(sqrt(n)).</p>
 <p>但是对于很N个数的质数表单个判断就很无力,因为同一个数的因数会被重复地判断</p>
@@ -359,8 +356,6 @@
 <p>对于任意的x,y,有lcm(x,y) <em> gcd(x,y) = x</em>y; 证明略自行百度</p>
 <h4 id="Extended-Euclid算法"><a href="#Extended-Euclid算法" class="headerlink" title="Extended Euclid算法"></a>Extended Euclid算法</h4><p>找出一对整数x,y要求能够使得</p>
 
-          
-        
       
     </div>
     
@@ -375,155 +370,36 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/07/板子（各种）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="karriganasta">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="❤ karriganasta's blog ❤">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/07/板子（各种）/" itemprop="url">板子（各种）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-07T22:06:21+08:00">
-                2018-02-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/模板/" itemprop="url" rel="index">
-                    <span itemprop="name">模板</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/学习笔记-数学-数论/" rel="tag"># -"学习笔记" -"数学" -"数论"</a>
           
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="1-欧拉筛质数大法"><a href="#1-欧拉筛质数大法" class="headerlink" title="1.欧拉筛质数大法"></a>1.欧拉筛质数大法</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">bool</span> vis[<span class="number">10000001</span>];</span><br><span class="line"><span class="keyword">int</span> prime[<span class="number">10000001</span>],cnt = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Euler_Prime</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i =  <span class="number">2</span>; i &lt;= x; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (!vis[i]) <span class="comment">//没有被筛过,prime[cnt]记录下质数</span></span><br><span class="line">		prime[++cnt] = i;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= cnt &amp;&amp; i * prime[j] &lt;= x; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			vis[i*prime[j]] = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span> (i % prime[j] == <span class="number">0</span>) <span class="keyword">break</span>; <span class="comment">//确保每个数都被他最小的质因数筛去,而不是被重复筛几遍.</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	Euler_Prime(n);</span><br><span class="line">	<span class="keyword">int</span> T;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;T);</span><br><span class="line">	<span class="keyword">while</span>(T--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> x;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;x);</span><br><span class="line">		<span class="keyword">if</span> (x == <span class="number">1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"No\n"</span>);</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (vis[x])</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"No\n"</span>);</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"Yes\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/07/板子（各种）/" rel="next" title="板子（各种）">
+                <i class="fa fa-chevron-left"></i> 板子（各种）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
       
     </footer>
   </div>
@@ -533,10 +409,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -544,6 +421,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -564,8 +445,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -658,6 +548,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念及代码"><span class="nav-number">1.</span> <span class="nav-text">基本概念及代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#质数"><span class="nav-number">1.0.1.</span> <span class="nav-text">质数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Euclid算法"><span class="nav-number">1.0.2.</span> <span class="nav-text">Euclid算法.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Extended-Euclid算法"><span class="nav-number">1.0.3.</span> <span class="nav-text">Extended Euclid算法</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -791,6 +697,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
