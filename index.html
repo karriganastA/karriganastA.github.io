@@ -254,6 +254,136 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/10/UVa-10791-Minimum-Sum-LCM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="karriganasta">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="❤ karriganasta's blog ❤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/10/UVa-10791-Minimum-Sum-LCM/" itemprop="url">[UVa-10791 Minimum Sum LCM]</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-10T13:50:21+08:00">
+                2018-02-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题面"><a href="#题面" class="headerlink" title="题面"></a>题面</h2><p>传送门:<a href="https://vjudge.net/problem/UVA-10791" target="_blank" rel="noopener">UVa-10791</a><br>题目大意:给出一个数N,要求出至少两个数以上的正整数,使得</p>
+<script type="math/tex; mode=display">
+LCM(a_1,a_2, ...,a_k) = N</script><script type="math/tex; mode=display">
+并求出满足条件的最小的{\sum_{i=1}^{k}a_i}</script><h2 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h2><p>Sample Input<br>12<br>10<br>5<br>0<br>Sample Output<br>Case 1: 7<br>Case 2: 7<br>Case 3: 6</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>还是应用唯一分解定理,不难发现。<br>对于任何一个质数或者对于一个只有单因子（除去1和它本身）的数，<br>其数列a只包含1和它本身<br>此时答案就为n+1.</p>
+<p>对于一个合数n,总有</p>
+<script type="math/tex; mode=display">
+N = \prod_{i=1}^{k}a_i^{p_i}</script><p>不难发现,当质因数分解时各个质因数的幂之间的gcd必定为1，这样的损耗代价是最小的。</p>
+<p>所以求出各个ai和pi就可以gg了。</p>
+<p>注意特判,数据范围内是int但是很可能会在计算过程中溢出。</p>
+<p>开个long long比较保险。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL; </span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">bool</span> is_prime[<span class="number">56440</span>]; <span class="comment">//sqrt(2^31-1) 约等于 56340 </span></span><br><span class="line">LL prime[<span class="number">56440</span>],pf[<span class="number">56400</span>],cnt = <span class="number">0</span>,n;</span><br><span class="line">LL kase = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(LL x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (x == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (x == <span class="number">2</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (LL i = <span class="number">2</span>; i &lt;= <span class="built_in">sqrt</span>(x+<span class="number">0.5</span>); i++)</span><br><span class="line">		<span class="keyword">if</span> (x % i == <span class="number">0</span>) </span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">while</span>(x % i == <span class="number">0</span>) x /= i;</span><br><span class="line">			<span class="keyword">if</span> (x == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Euler_Prime</span><span class="params">(LL x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(is_prime,<span class="number">1</span>,<span class="keyword">sizeof</span>(is_prime));</span><br><span class="line">	is_prime[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (LL i = <span class="number">2</span>; i &lt;= x; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (is_prime[i]) prime[++cnt] = i;</span><br><span class="line">		<span class="keyword">for</span> (LL j = <span class="number">1</span>; j &lt;= cnt &amp;&amp; i * prime[j] &lt;= x; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			is_prime[i * prime[j]] = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">if</span> (i % prime[j] == <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Euler_Prime(<span class="number">56439</span>);</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;n) == <span class="number">1</span> &amp;&amp; n)</span><br><span class="line">	&#123;</span><br><span class="line">		LL ans = <span class="number">0</span>;</span><br><span class="line">		<span class="built_in">memset</span>(pf,<span class="number">0</span>,<span class="keyword">sizeof</span>(pf));</span><br><span class="line">		<span class="keyword">if</span> (n == <span class="number">1</span>) </span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"Case %lld: 2\n"</span>,++kase);</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (check(n))</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"Case %lld: %lld\n"</span>,++kase,n+<span class="number">1</span>);</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (LL i = <span class="number">1</span>; i &lt;= cnt; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (n % prime[i] == <span class="number">0</span>) </span><br><span class="line">			&#123;</span><br><span class="line">				LL ret = <span class="number">1</span>;</span><br><span class="line">				<span class="keyword">while</span>(n % prime[i] == <span class="number">0</span>) n/=prime[i],ret *= prime[i];</span><br><span class="line">				ans += ret;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (n == <span class="number">1</span>) <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Case %lld: %lld\n"</span>,++kase,ans);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/10/UVa-10375-Choose-and-divide/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1029,7 +1159,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
