@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="-"学习笔记"," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="❤ karriganasta's blog ❤" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="矩阵矩阵的基本运算矩阵加法最简单了，就是对应数的相加.如果用i,j来表示行和列那么就有  C_{(i,j)} = A_{(i,j)} + B_{(i,j)}减法同理，不作太多的阐述。唯一需要注意事项，当两个矩阵的行和列不相等的时候，求他们的矩阵和或者矩阵差是毫无意义的。只有r1=r2,s1=s2才有加减法的定义。 矩阵乘法（划重点） 稍显复杂，矩阵乘法必须在n行m列和m行p列的两个矩阵中进行运算，">
+<meta name="keywords" content="-&quot;学习笔记&quot;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="矩阵和线性方程组学习笔记">
+<meta property="og:url" content="http://yoursite.com/2018/02/10/矩阵和线性方程组学习笔记/index.html">
+<meta property="og:site_name" content="❤ karriganasta&#39;s blog ❤">
+<meta property="og:description" content="矩阵矩阵的基本运算矩阵加法最简单了，就是对应数的相加.如果用i,j来表示行和列那么就有  C_{(i,j)} = A_{(i,j)} + B_{(i,j)}减法同理，不作太多的阐述。唯一需要注意事项，当两个矩阵的行和列不相等的时候，求他们的矩阵和或者矩阵差是毫无意义的。只有r1=r2,s1=s2才有加减法的定义。 矩阵乘法（划重点） 稍显复杂，矩阵乘法必须在n行m列和m行p列的两个矩阵中进行运算，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-11T15:52:03.104Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="矩阵和线性方程组学习笔记">
+<meta name="twitter:description" content="矩阵矩阵的基本运算矩阵加法最简单了，就是对应数的相加.如果用i,j来表示行和列那么就有  C_{(i,j)} = A_{(i,j)} + B_{(i,j)}减法同理，不作太多的阐述。唯一需要注意事项，当两个矩阵的行和列不相等的时候，求他们的矩阵和或者矩阵差是毫无意义的。只有r1=r2,s1=s2才有加减法的定义。 矩阵乘法（划重点） 稍显复杂，矩阵乘法必须在n行m列和m行p列的两个矩阵中进行运算，">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/10/矩阵和线性方程组学习笔记/"/>
+
+
+
+
+
+  <title>矩阵和线性方程组学习笔记 | ❤ karriganasta's blog ❤</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/karriganastA"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">❤ karriganasta's blog ❤</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">infinite OI road.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+	<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=459434585&auto=1&height=66"></iframe>
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/10/矩阵和线性方程组学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="karriganasta">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="❤ karriganasta's blog ❤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">矩阵和线性方程组学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-10T22:14:30+08:00">
+                2018-02-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数学/" itemprop="url" rel="index">
+                    <span itemprop="name">数学</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h2><h3 id="矩阵的基本运算"><a href="#矩阵的基本运算" class="headerlink" title="矩阵的基本运算"></a>矩阵的基本运算</h3><p>矩阵加法<br>最简单了，就是对应数的相加.<br>如果用i,j来表示行和列<br>那么就有</p>
+<script type="math/tex; mode=display">
+C_{(i,j)} = A_{(i,j)} + B_{(i,j)}</script><p>减法同理，不作太多的阐述。唯一需要注意事项，当两个矩阵的行和列不相等的时候，求他们的矩阵和或者矩阵差是毫无意义的。只有r1=r2,s1=s2才有加减法的定义。</p>
+<p><strong>矩阵乘法</strong>（划重点）</p>
+<p>稍显复杂，矩阵乘法必须在n行m列和m行p列的两个矩阵中进行运算，否则一样没有意义。</p>
+<p>得到一个n行p列的矩阵。</p>
+<p>有以下的递推式:</p>
+<script type="math/tex; mode=display">
+C_{i,k} = \sum_{j=1}^nA_{i,j} *B_{j,k}</script><p>根据这个递推式，我们不难得到一个O(n^3)的算法</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> int long long</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">510</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod = <span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Matrix</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> m[maxn][maxn];</span><br><span class="line">	<span class="keyword">int</span> r, s;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> N,M,P;</span><br><span class="line">Matrix A,B,ans;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">(<span class="keyword">signed</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%lld %lld %lld"</span>,&amp;N,&amp;P,&amp;M);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; i++)</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= P; j++)</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;A.m[i][j]);</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= P; i++)</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= M; j++)</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;B.m[i][j]);</span><br><span class="line">		</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; i++)</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= P; k++)</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= M; j++)</span><br><span class="line">			&#123;</span><br><span class="line">				ans.m[i][j] = (ans.m[i][j] + mod) % mod;</span><br><span class="line">				ans.m[i][j] += (A.m[i][k]%mod)* (B.m[k][j]%mod);</span><br><span class="line">				ans.m[i][j] = (ans.m[i][j] + mod) % mod;</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= M; j++)</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%lld "</span>,(ans.m[i][j]%mod+mod)%mod);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>尽管联赛的要求就是O(n^3)</p>
+<p>但是还可以更快</p>
+<p>可以试想，当A(i,j)等于0时,那里一整块的结果都是0，不需要继续运算</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; i++)</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= P; k++)</span><br><span class="line">			<span class="keyword">if</span> (A.m[i][k])</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= M; j++)</span><br><span class="line">			&#123;</span><br><span class="line">				ans.m[i][j] = (ans.m[i][j] + mod) % mod;</span><br><span class="line">				ans.m[i][j] += (A.m[i][k]%mod)* (B.m[k][j]%mod);</span><br><span class="line">				ans.m[i][j] = (ans.m[i][j] + mod) % mod;</span><br><span class="line">			&#125;</span><br></pre></td></tr></table></figure>
+<p>还有神仙操作的可以优化到O(n)的操作</p>
+<p>贴下代码慢慢理解啦。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> i64;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> P=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="keyword">char</span> rb[<span class="number">8000000</span>],*rp=rb,ob[<span class="number">4000000</span>],*op=ob;</span><br><span class="line"><span class="keyword">int</span> _()&#123;</span><br><span class="line">	<span class="keyword">int</span> x=<span class="number">0</span>,f=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(*rp&lt;<span class="number">48</span>)*rp++==<span class="string">'-'</span>?f=<span class="number">-1</span>:<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(*rp&gt;<span class="number">47</span>)x=x*<span class="number">10</span>+*rp++<span class="number">-48</span>;</span><br><span class="line">	<span class="keyword">return</span> x*f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pr</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">	x+=(x&gt;&gt;<span class="number">31</span>&amp;P);</span><br><span class="line">	<span class="keyword">int</span> ss[<span class="number">15</span>],sp=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">do</span> ss[++sp]=x%<span class="number">10</span>,x/=<span class="number">10</span>;<span class="keyword">while</span>(x);</span><br><span class="line">	<span class="keyword">while</span>(sp)*op++=ss[sp--]+<span class="number">48</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> n,p,m;</span><br><span class="line"><span class="keyword">int</span> a[<span class="number">507</span>][<span class="number">507</span>],b[<span class="number">507</span>][<span class="number">507</span>];</span><br><span class="line">i64 c[<span class="number">507</span>][<span class="number">507</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	fread(rb,<span class="number">1</span>,<span class="keyword">sizeof</span>(rb),<span class="built_in">stdin</span>);</span><br><span class="line">	n=_(),p=_(),m=_();</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=p;++j)a[i][j]=_();</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=p;++i)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=m;++j)b[i][j]=_();</span><br><span class="line">	<span class="keyword">int</span> m1=m;</span><br><span class="line">	<span class="keyword">while</span>(m1&amp;<span class="number">3</span>)++m1;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">		i64*z=c[i];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">1</span>;k&lt;=p;++k)&#123;</span><br><span class="line">			<span class="keyword">int</span> x=a[i][k],*y=b[k];</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">4</span>;j&lt;=m1;j+=<span class="number">4</span>)&#123;</span><br><span class="line">				z[j<span class="number">-3</span>]+=i64(x)*y[j<span class="number">-3</span>];</span><br><span class="line">				z[j<span class="number">-2</span>]+=i64(x)*y[j<span class="number">-2</span>];</span><br><span class="line">				z[j<span class="number">-1</span>]+=i64(x)*y[j<span class="number">-1</span>];</span><br><span class="line">				z[j  ]+=i64(x)*y[j  ];</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(!(k&amp;<span class="number">7</span>))</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=m;++j)z[j]-=(z[j]&gt;&gt;<span class="number">30</span>)*P;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=m;++j)&#123;</span><br><span class="line">			pr(c[i][j]%P);</span><br><span class="line">			*op++=<span class="number">32</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		*op++=<span class="number">10</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	fwrite(ob,<span class="number">1</span>,op-ob,<span class="built_in">stdout</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="高斯消元"><a href="#高斯消元" class="headerlink" title="高斯消元"></a>高斯消元</h3><p>我们假设有这样一个n阶的可逆矩阵，例如</p>
+<script type="math/tex; mode=display">
+2x+y-z =8(L_1)\\\\-3x-y+2z=-11(L_2)\\\\-2x+y+2z=-3(L_3)</script><p>这样的一个三元一次方程组写成矩阵的形式为</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+2 & 1 & -1  &| &8 \\\\
+-3 & -1 & 2 & | & -11\\\\
+-2 & 1 & 2 & | & -3
+\end{bmatrix}</script><p>这个矩阵被称作增广矩阵（AUGMENTED MATRIX）,最后一列事实上不是系数矩阵而是常数。</p>
+<p>这个矩阵可以经过这样的处理。</p>
+<p>对于每一行要使得Aii≠0且Aji(j&gt;i)均为0,具体操作</p>
+<p>1.来到当前行 以上方矩阵为例子，现在要处理第一行。我们先往下面找到绝对值最大的A(i,r),这里找到是-3,于是交换第1行和第2行.（矩阵变成这个样子，就是交换了一二两行）</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+-3 & -1 & 2 & | & -11\\\\
+2 & 1 & -1  &| &8 \\\\
+-2 & 1 & 2 & | & -3
+\end{bmatrix}</script><p>对于L1，L2 将L1 <em> 3 +L2 </em> 2来加减消元，对于第三行，和第二行一样，直接与现在的L1操作。</p>
+<p>将L2、L3的首项消成0后继续操作第二行。</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+-3 & -1 & 2 & | & -11\\\\
+\space & \frac{1}{3} & \frac{1}{3}   & | &\frac{2}{3} \\\\
+\space & \frac{5}{3} & \frac{2}{3}   & | &\frac{13}{3} \\\\
+\end{bmatrix}</script><p>以此类推最终得到一个三角矩阵。</p>
+<p>差不多就长这个样子。（滑稽</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+-3 & -1 & 2 & | & -11\\\\
+\space & \frac{5}{3} & \frac{2}{3}   & | &\frac{13}{3} \\\\
+\space & \space & \frac{1}{5}   & | &-\frac{1}{5} \\\\
+
+\end{bmatrix}</script><p>这样其实最后一列已经告诉了我们z=-1。</p>
+<p>自下向上迭代即可。</p>
+<p>高斯消元代码如下。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Gauss_Eli</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">        num=i;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=i+<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">          <span class="keyword">if</span> (<span class="built_in">fabs</span>(A[j][i])&gt;<span class="built_in">fabs</span>(A[num][i]))</span><br><span class="line">            num=j;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++) swap(A[i][j],A[num][j]);</span><br><span class="line">        swap(b[num],b[i]);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=i+<span class="number">1</span>;j&lt;=n;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">fabs</span>(A[j][i])&lt;=eps) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">double</span> t=A[j][i]/A[i][i];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k=<span class="number">1</span>;k&lt;=n;k++)</span><br><span class="line">              A[j][k]-=A[i][k]*t;</span><br><span class="line">            b[j]-=b[i]*t;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=n;i&gt;=<span class="number">1</span>;i--)&#123;</span><br><span class="line">        ans[i]=b[i]/A[i][i];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=i;j&gt;=<span class="number">1</span>;j--)</span><br><span class="line">          b[j]-=A[j][i]*ans[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于异或^方程组可以用bitset优化.<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">bitset</span>&lt;250&gt;A[<span class="number">250</span>]; \\常数项b[i]贴在A[i][n+<span class="number">1</span>]中.</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Gauss_Eli</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span> (A[i][i]==<span class="number">0</span>)&#123;</span><br><span class="line">            num=i;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j=i+<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">              <span class="keyword">if</span> (A[j][i]!=<span class="number">0</span>)&#123;num=j;<span class="keyword">break</span>;&#125;</span><br><span class="line">            swap(A[num],A[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=i+<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">          <span class="keyword">if</span> (A[j][i]!=<span class="number">0</span>) A[j]^=A[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=n;i&gt;=<span class="number">1</span>;i--)&#123;</span><br><span class="line">        ans[i]=A[i][n+<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=i;j&gt;=<span class="number">1</span>;j--)</span><br><span class="line">          <span class="keyword">if</span> (A[j][i]!=<span class="number">0</span>)</span><br><span class="line">            A[j][n+<span class="number">1</span>]=A[j][n+<span class="number">1</span>]^ans[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>题目传送门:</p>
+<p><a href="https://vjudge.net/problem/UVA-10870" target="_blank" rel="noopener">UVa-10870</a><br><a href="https://vjudge.net/problem/UVALive-3704" target="_blank" rel="noopener">LA-3704</a><br><a href="https://vjudge.net/problem/UVA-11542" target="_blank" rel="noopener">UVa-11542</a><br><a href="https://vjudge.net/problem/POJ-1222" target="_blank" rel="noopener">POJ-1222</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习笔记/" rel="tag"># -"学习笔记"</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/10/UVa-10791-Minimum-Sum-LCM/" rel="next" title="[UVa-10791 Minimum Sum LCM]">
+                <i class="fa fa-chevron-left"></i> [UVa-10791 Minimum Sum LCM]
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="karriganasta" />
+            
+              <p class="site-author-name" itemprop="name">karriganasta</p>
+              <p class="site-description motion-element" itemprop="description">an ordinary OIer.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/karriganasta" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://codeforces.com/profile/Wonderrr" target="_blank" title="Codeforces">
+                      
+                        <i class="fa fa-fw fa-cf"></i>Codeforces</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://user.qzone.qq.com/457612138/infocenter" target="_blank" title="QQ">
+                      
+                        <i class="fa fa-fw fa-globe"></i>QQ</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵"><span class="nav-number">1.</span> <span class="nav-text">矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#矩阵的基本运算"><span class="nav-number">1.1.</span> <span class="nav-text">矩阵的基本运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高斯消元"><span class="nav-number">1.2.</span> <span class="nav-text">高斯消元</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">karriganasta</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
