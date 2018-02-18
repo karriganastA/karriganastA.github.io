@@ -254,6 +254,153 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/18/区间信息的维护和查询学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="karriganasta">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="❤ karriganasta's blog ❤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/18/区间信息的维护和查询学习笔记/" itemprop="url">区间信息的维护和查询学习笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-18T18:53:09+08:00">
+                2018-02-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/高级数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">高级数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="二叉索引树Binary-Index-Tree（树状数组）"><a href="#二叉索引树Binary-Index-Tree（树状数组）" class="headerlink" title="二叉索引树Binary Index Tree（树状数组）"></a>二叉索引树Binary Index Tree（树状数组）</h2><p>动态的连续和查询问题,有n个元素的数组<br>设计一个数据结构,支持以下两种操作:<br>Add(x,d) 让A[x]增加d<br>Query(L,R) 计算A[L]+..+A[R].</p>
+<p>首先介绍一个玩意叫做lowbit(x)</p>
+<p>对于正整数x我们定义它的二进制最右边的1的值为lowbit(x)<br>在讲BIT之前，我们来先了解一个函数：对于任意正整数x，我们定义lowbit(x)为x的二进制中最右边的1所对应的值，比如，5的二进制是101，那么lowbit(5)= 1；4的二进制是100，那么lowbit(4) = 4；这里用到的是按位运算，请读者自己去查阅关于这点的资料。但为什么呢？计算机里面的整数采用补码表示，-x实际上是x在二进制中按位取反，末位+1后的结果，二者按位取“与”之后，前面全部变成0，之后的lowbit保持不变。</p>
+<p>简单的两个操作如下<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">500010</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,a[maxn],C[maxn];</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lowbit(x) (x&amp;-x)</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(x)</span><br><span class="line">	&#123;</span><br><span class="line">		ret += C[x];</span><br><span class="line">		x -= lowbit(x);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> d)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(x &lt;= n)</span><br><span class="line">	&#123;</span><br><span class="line">		C[x] += d;</span><br><span class="line">		x += lowbit(x);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;<span class="keyword">return</span> (sum(r)-sum(l<span class="number">-1</span>));&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(C,<span class="number">0</span>,<span class="keyword">sizeof</span>(C));</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> x;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;x);</span><br><span class="line">		a[i] = x;</span><br><span class="line">		add(i,x);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(m--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> x,y;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;x,&amp;y);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,query(x,y));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>主要是add和sum这两个操作<br>可以用蓝书上两张图记忆</p>
+<p><img src="/2018/02/18/区间信息的维护和查询学习笔记/1.jpg" alt="Markdown"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/16/数学专题习题2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -658,7 +805,7 @@
 <p>下面就是万恶的积分运算了！</p>
 <p>这里积分我算了两次，第一次是自己没用a来去替换w和h算的,算是硬头皮算的，第二次就参考蓝书了。</p>
 <p>第一次的计算方法:</p>
-<p><img src="http://i1.bvimg.com/631473/5cc78386cf10fd7d.jpg" alt="Markdown"></p>
+<p><img src="/2018/02/13/LA-3485-Bridge-基于定积分的二分/6.jpg" alt="Markdown"></p>
 <p>经过一番试验。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> w,h = <span class="number">1.0</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; w;</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">	&#123; </span><br><span class="line">		<span class="keyword">double</span> ans = w*w/<span class="number">8</span>/h*(<span class="built_in">log</span>(<span class="built_in">abs</span>(<span class="built_in">sqrt</span>(<span class="number">16</span>*h*h/w/w)+<span class="number">4</span>*h/w)) + <span class="number">4</span>*h/w*<span class="built_in">sqrt</span>(<span class="number">16</span>*h*h/w/w+<span class="number">1</span>))/<span class="number">2</span>;</span><br><span class="line">		h += <span class="number">1.0</span>;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		system(<span class="string">"pause"</span>);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 <p>发现随着h的增加这个积分的值也在增加,这是个严格递增积分。<br>就可以用二分求解了！<br>写出这样的代码<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> eps = <span class="number">1e-8</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">double</span> D,H,B,L;</span><br><span class="line"><span class="keyword">int</span> T;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">F</span><span class="params">(<span class="keyword">double</span> w,<span class="keyword">double</span> h)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">double</span> ans = w*w/<span class="number">8</span>/h*(<span class="built_in">log</span>(<span class="built_in">fabs</span>(<span class="built_in">sqrt</span>(<span class="number">16</span>*h*h/w/w)+<span class="number">4</span>*h/w)) + <span class="number">4</span>*h/w*<span class="built_in">sqrt</span>(<span class="number">16</span>*h*h/w/w+<span class="number">1</span>))/<span class="number">2</span>;</span><br><span class="line">	ans *= <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">calc</span><span class="params">(<span class="keyword">double</span> L,<span class="keyword">double</span> w)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">double</span> ll = <span class="number">0.0</span>,rr = H;</span><br><span class="line">	<span class="comment">//while(rr-ll &gt; eps)</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">100</span>;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">double</span> mid = (ll+rr)/<span class="number">2</span>;</span><br><span class="line">		<span class="keyword">if</span> (F(w,mid) - L &gt; eps) rr = mid;</span><br><span class="line">		<span class="keyword">else</span> ll = mid;</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">return</span> (H-ll);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;T);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> kase = <span class="number">1</span>; kase &lt;= T; kase++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Case %d:\n"</span>,kase);</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%lf%lf%lf%lf"</span>,&amp;D,&amp;H,&amp;B,&amp;L);</span><br><span class="line">		<span class="keyword">int</span> n = <span class="built_in">ceil</span>(B/D);</span><br><span class="line">		<span class="keyword">double</span> singleL = L/<span class="keyword">double</span>(n);</span><br><span class="line">		<span class="keyword">double</span> singlew = B/<span class="keyword">double</span>(n);</span><br><span class="line">		<span class="comment">//printf("##debug n:%d L:%.5lf w %.5lf\n",n,singleL,singlew);</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%.5lf\n"</span>,calc(singleL,singlew));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -667,7 +814,7 @@
 <p>然后扔到OJ上就WA了,不管怎么调精度都是WA。</p>
 <p>于是就考虑到这个方法可能存在误差。只不过很小很小但是在精度以内，会影响答案。</p>
 <p>伤心，看到蓝书写的代换我真的头皮发麻</p>
-<p><img src="http://i1.bvimg.com/631473/63785a6b25871575.jpg" alt="Markdown"></p>
+<p><img src="/2018/02/13/LA-3485-Bridge-基于定积分的二分/gcc.jpg" alt="Markdown"></p>
 <p>简化了a后发现其实积分中用t与dt代换x的步骤也省去了。</p>
 <p>啊啊啊啊啊啊啊</p>
 <p>难受</p>
@@ -837,7 +984,7 @@ sin(x);tan(x);tx^2;</script><p>再看一眼题目看到了sin(x),tan(x),tx^2前�
 <p>求这个总函数在[0,1000]上的最小值。</p>
 <p>错误思路:<br>把每个函数在[0,1000]上的最小值求出来最后一遍取最小。<br>这样虽说看上去毫无问题，但是这个思路对于定义就是不正确的<br>f(x)的定义是max(si(x))而不是min,也就是说,我们在处理函数时不能以偏概全,必须在某一区间上硬性规定要取的是函数的最大值,换言之,我们的答案不能保证取到这个答案时f(x)能取到这个最小值。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//wrong answer.</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e4</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> eps = <span class="number">1e-7</span>;</span><br><span class="line"><span class="keyword">int</span> T,n;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> a,b,c;</span><br><span class="line">	<span class="keyword">double</span> ans;</span><br><span class="line">&#125;f[maxn]; </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">calc</span><span class="params">(Node q)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x = q.a,y = q.b,z = q.c;</span><br><span class="line">	<span class="keyword">if</span> (x == <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (y &lt;= <span class="number">0</span>) </span><br><span class="line">		&#123;</span><br><span class="line">			q.ans = (<span class="keyword">double</span>)(z);</span><br><span class="line">			<span class="keyword">return</span> ;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> </span><br><span class="line">		&#123;</span><br><span class="line">			q.ans = (<span class="keyword">double</span>)(<span class="number">1000</span>*y+z);</span><br><span class="line">			<span class="keyword">return</span> ;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">double</span> u = (-y)/(<span class="number">2</span>*x);</span><br><span class="line">		<span class="keyword">if</span> (u &gt; eps  &amp;&amp;  <span class="number">1000</span> - u &gt; eps)</span><br><span class="line">			&#123;</span><br><span class="line">				q.ans = u*u*<span class="keyword">double</span>(x)+u*<span class="keyword">double</span>(y)+u*<span class="keyword">double</span>(z);</span><br><span class="line">				<span class="keyword">return</span> ; </span><br><span class="line">			&#125;</span><br><span class="line">		<span class="keyword">if</span> (u &lt; -eps)</span><br><span class="line">			&#123;</span><br><span class="line">				q.ans = <span class="keyword">double</span>(z);</span><br><span class="line">				<span class="keyword">return</span> ;</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="keyword">if</span> (u - <span class="number">1000</span> &gt; eps)</span><br><span class="line">			&#123;</span><br><span class="line">				q.ans = <span class="number">1000</span>*<span class="number">1000</span>*<span class="keyword">double</span>(x)+<span class="keyword">double</span>(y)*<span class="number">1000</span>+<span class="keyword">double</span>(z);</span><br><span class="line">				<span class="keyword">return</span> ;		</span><br><span class="line">			&#125;		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc ,<span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;T);</span><br><span class="line">	<span class="keyword">while</span>(T--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">double</span> ass = <span class="number">1e8</span>;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;f[i].a,&amp;f[i].b,&amp;f[i].c),</span><br><span class="line">		calc(f[i]),</span><br><span class="line">		ass = min(ass,f[i].ans),</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%.4lf\n"</span>,ass);</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>正解:<br>可以证明，对于两条抛物线或者直线，要么是单增单减，要么是开口向上的凹形图像。<br>再用一次数学归纳法,证明从n条线推导到n+1条曲线即可。<br>因为答案呈单峰，三分求解即可。<br>交了两次,第一次eps =1e-7莫名wa掉,第二次eps=1e-9就AC了<br>你敢信<br><img src="http://i1.bvimg.com/631473/d6e371da4aa03eb0.jpg" alt="Markdown"></p>
+<p>正解:<br>可以证明，对于两条抛物线或者直线，要么是单增单减，要么是开口向上的凹形图像。<br>再用一次数学归纳法,证明从n条线推导到n+1条曲线即可。<br>因为答案呈单峰，三分求解即可。<br>交了两次,第一次eps =1e-7莫名wa掉,第二次eps=1e-9就AC了<br>你敢信<br><img src="/2018/02/13/数值算法学习笔记/jzj.jpg" alt="Markdown"></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e4</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> eps = <span class="number">1e-9</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a[maxn],b[maxn],c[maxn],T,n;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(<span class="keyword">int</span> &amp;x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	x=<span class="number">0</span>;<span class="keyword">char</span> ch=getchar();<span class="keyword">int</span> f=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch))&#123;<span class="keyword">if</span>(ch==<span class="string">'-'</span>)f=<span class="number">-1</span>;ch=getchar();&#125;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))&#123;x=x*<span class="number">10</span>+ch-<span class="string">'0'</span>;ch=getchar();&#125;</span><br><span class="line">	x*=f;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">calc</span><span class="params">(<span class="keyword">double</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">double</span> ans = a[<span class="number">1</span>]*x*x+b[<span class="number">1</span>]*x+c[<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++)</span><br><span class="line">		ans = max(ans,a[i]*x*x+b[i]*x+c[i]);</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	read(T);</span><br><span class="line">	<span class="keyword">while</span>(T--)</span><br><span class="line">	&#123;</span><br><span class="line">		read(n);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">			read(a[i]),read(b[i]),read(c[i]);</span><br><span class="line">		<span class="keyword">double</span> l = <span class="number">0.0</span>,r = <span class="number">1000.0</span>;</span><br><span class="line">		<span class="keyword">while</span>(r - l &gt; eps)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">double</span> m1,m2;</span><br><span class="line">			m1 = l+(r-l)/<span class="number">3</span>;</span><br><span class="line">			m2 = r-(r-l)/<span class="number">3</span>;</span><br><span class="line">			<span class="keyword">if</span> (calc(m2)-calc(m1) &gt; eps)</span><br><span class="line">			r = m2;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			l = m1;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//printf("%.4lf %.4lf\n",l,r);</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%.4lf\n"</span>,calc(l));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="积分导数技巧"><a href="#积分导数技巧" class="headerlink" title="积分导数技巧"></a>积分导数技巧</h2><p>虽然积分和导数算是我高数里比较擅长的东西。<br>但是还是要理一下的吧。</p>
 <h3 id="导数的定义"><a href="#导数的定义" class="headerlink" title="导数的定义"></a>导数的定义</h3><p>在可导函数上某一点的瞬时变化率.</p>
@@ -857,14 +1004,14 @@ f'(x)=\frac{g'(x)h(x)-g(x)h'(x)}{h^2(x)}</script><script type="math/tex; mode=di
 链导法则：如果一个函数f(x)=g(h(x)),那么\\\\
 f'(x)=g'(h(x))·h'(x)</script><p><del>Mathjax打得我好累</del></p>
 <h3 id="积分的定义"><a href="#积分的定义" class="headerlink" title="积分的定义"></a>积分的定义</h3><p>难以解释.<br>积分求的是一个函数与x轴围成的面积大小。<br>只可意会不可言传。（逃</p>
-<p><img src="http://i2.bvimg.com/631473/e3ba002b8fe51d8c.jpg" alt="Markdown"></p>
-<p><img src="http://i2.bvimg.com/631473/e7660e1c57dde7f8.jpg" alt="Markdown"></p>
-<p><img src="http://i2.bvimg.com/631473/9ac176d57d51c8db.jpg" alt="Markdown"></p>
+<p><img src="/2018/02/13/数值算法学习笔记/1.jpg" alt="Markdown"></p>
+<p><img src="/2018/02/13/数值算法学习笔记/2.jpg" alt="Markdown"></p>
+<p><img src="/2018/02/13/数值算法学习笔记/3.jpg" alt="Markdown"></p>
 <p>这几个算有用的吧。</p>
 <p>之前做过的一点习题</p>
 <p>贴上来算了</p>
-<p><img src="http://i2.bvimg.com/631473/7f354ce20d3e7ac0.jpg" alt="Markdown"></p>
-<p><img src="http://i2.bvimg.com/631473/52e387ab84350305.jpg" alt="Markdown"></p>
+<p><img src="/2018/02/13/数值算法学习笔记/4.jpg" alt="Markdown"></p>
+<p><img src="/2018/02/13/数值算法学习笔记/5.jpg" alt="Markdown"></p>
 <h3 id="积分和导数的综合运用"><a href="#积分和导数的综合运用" class="headerlink" title="积分和导数的综合运用"></a>积分和导数的综合运用</h3><p>求曲函数的长度(LA-3485有用)</p>
 <script type="math/tex; mode=display">
 有一曲线方程\space f(x),且x\in[a,b],令f'(x)为f(x)的导函数,那么该曲线在a,b上的长度为\\\\
@@ -1486,7 +1633,7 @@ C_{(i,j)} = A_{(i,j)} + B_{(i,j)}</script><p>减法同理，不作太多的阐�
 <p>有以下的递推式:</p>
 <script type="math/tex; mode=display">
 C_{i,k} = \sum_{j=1}^nA_{i,j} *B_{j,k}</script><p>具体细节</p>
-<p><img src="http://i4.bvimg.com/631473/043860a3719b342d.jpg" alt="Markdown"></p>
+<p><img src="/2018/02/10/矩阵和线性方程组学习笔记/1.jpg" alt="Markdown"></p>
 <p>根据这个递推式，我们不难得到一个O(n^3)的算法</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> int long long</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">510</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod = <span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Matrix</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> m[maxn][maxn];</span><br><span class="line">	<span class="keyword">int</span> r, s;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> N,M,P;</span><br><span class="line">Matrix A,B,ans;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">(<span class="keyword">signed</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%lld %lld %lld"</span>,&amp;N,&amp;P,&amp;M);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; i++)</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= P; j++)</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;A.m[i][j]);</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= P; i++)</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= M; j++)</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;B.m[i][j]);</span><br><span class="line">		</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; i++)</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= P; k++)</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= M; j++)</span><br><span class="line">			&#123;</span><br><span class="line">				ans.m[i][j] = (ans.m[i][j] + mod) % mod;</span><br><span class="line">				ans.m[i][j] += (A.m[i][k]%mod)* (B.m[k][j]%mod);</span><br><span class="line">				ans.m[i][j] = (ans.m[i][j] + mod) % mod;</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= M; j++)</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%lld "</span>,(ans.m[i][j]%mod+mod)%mod);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>尽管联赛的要求就是O(n^3)</p>
@@ -1725,150 +1872,6 @@ N = \prod_{i=1}^{k}a_i^{p_i}</script><p>不难发现,当质因数分解时各个
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/10/UVa-10375-Choose-and-divide/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="karriganasta">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="❤ karriganasta's blog ❤">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/10/UVa-10375-Choose-and-divide/" itemprop="url">[UVa-10375] Choose and divide</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-10T11:10:26+08:00">
-                2018-02-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数学/" itemprop="url" rel="index">
-                    <span itemprop="name">数学</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题面"><a href="#题面" class="headerlink" title="题面"></a>题面</h2><p>传送门:<a href="https://vjudge.net/problem/UVA-10375" target="_blank" rel="noopener">UVa-10375</a><br>题目大意:给出p,q,r,s,求出C(p,q)/C(r,s)的值,其中p,q,r,s∈[1,10000]；且p &gt;= q,r &gt;= s;</p>
-<h2 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h2><p>Sample Input<br>10 5 14 9<br>93 45 84 59<br>145 95 143 92<br>995 487 996 488<br>2000 1000 1999 999<br>9998 4999 9996 4998<br>Sample Output<br>0.12587<br>505606.46055<br>1.28223<br>0.48996<br>2.00000<br>3.99960</p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>先预处理1W以内的质数集合prime[],<br>然后唯一分解定理,用pf[i]记录每个质数要乘或者除的个数,最后pow一遍即可.</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">10001</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> prime[maxn],cnt = <span class="number">0</span>,pf[maxn];</span><br><span class="line"><span class="keyword">bool</span> is_prime[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Euler_Prime</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(is_prime,<span class="number">1</span>,<span class="keyword">sizeof</span>(is_prime));</span><br><span class="line">	is_prime[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= x; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (is_prime[i]) prime[++cnt] = i;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= cnt &amp;&amp; i *prime[j] &lt;= x; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			is_prime[i*prime[j]] = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">if</span> (i % prime[j] == <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">work</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> d)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= cnt; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">while</span>(n % prime[i] == <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			n /= prime[i];</span><br><span class="line">			pf[i] += d;		</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (n == <span class="number">1</span>) <span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> d)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> q = <span class="number">1</span>; q &lt;= n; q++)</span><br><span class="line">		work(q,d);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Euler_Prime(<span class="number">10000</span>);</span><br><span class="line">	<span class="keyword">int</span> p,q,r,s;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d %d %d %d"</span>,&amp;p,&amp;q,&amp;r,&amp;s) == <span class="number">4</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">double</span> ans = <span class="number">1.0</span>;</span><br><span class="line">		<span class="built_in">memset</span>(pf,<span class="number">0</span>,<span class="keyword">sizeof</span>(pf));</span><br><span class="line">		update(p,<span class="number">1</span>); update(q,<span class="number">-1</span>);update(p-q,<span class="number">-1</span>);</span><br><span class="line">		update(r,<span class="number">-1</span>);update(s,<span class="number">1</span>); update(r-s,<span class="number">1</span>);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= cnt; i++)</span><br><span class="line">		ans *= <span class="built_in">pow</span>(prime[i],pf[i]);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%.5lf\n"</span>,ans);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1923,7 +1926,7 @@ N = \prod_{i=1}^{k}a_i^{p_i}</script><p>不难发现,当质因数分解时各个
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1934,7 +1937,7 @@ N = \prod_{i=1}^{k}a_i^{p_i}</script><p>不难发现,当质因数分解时各个
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
