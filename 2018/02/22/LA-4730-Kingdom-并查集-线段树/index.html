@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="-"解题报告"," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="❤ karriganasta's blog ❤" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="题面传送门:LA-4730 题目大意： There were N cities in an ancient kingdom. In the beginning of the  kingdom, all cities were isolated. Kings ordered their subjects to  construct roads connecting cities. A lot of">
+<meta name="keywords" content="-&quot;解题报告&quot;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[LA-4730] Kingdom 并查集+线段树">
+<meta property="og:url" content="http://yoursite.com/2018/02/22/LA-4730-Kingdom-并查集-线段树/index.html">
+<meta property="og:site_name" content="❤ karriganasta&#39;s blog ❤">
+<meta property="og:description" content="题面传送门:LA-4730 题目大意： There were N cities in an ancient kingdom. In the beginning of the  kingdom, all cities were isolated. Kings ordered their subjects to  construct roads connecting cities. A lot of">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-22T13:23:25.825Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[LA-4730] Kingdom 并查集+线段树">
+<meta name="twitter:description" content="题面传送门:LA-4730 题目大意： There were N cities in an ancient kingdom. In the beginning of the  kingdom, all cities were isolated. Kings ordered their subjects to  construct roads connecting cities. A lot of">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/22/LA-4730-Kingdom-并查集-线段树/"/>
+
+
+
+
+
+  <title>[LA-4730] Kingdom 并查集+线段树 | ❤ karriganasta's blog ❤</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/karriganastA"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">❤ karriganasta's blog ❤</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">infinite OI road.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+	<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=418602744&auto=1&height=66"></iframe>
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/22/LA-4730-Kingdom-并查集-线段树/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="karriganasta">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="❤ karriganasta's blog ❤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">[LA-4730] Kingdom 并查集+线段树</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-22T19:51:44+08:00">
+                2018-02-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/高级数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">高级数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="题面"><a href="#题面" class="headerlink" title="题面"></a>题面</h2><p>传送门:<a href="https://vjudge.net/problem/UVALive-4730" target="_blank" rel="noopener">LA-4730</a></p>
+<p>题目大意：</p>
+<p>There were N cities in an ancient kingdom. In the beginning of the  kingdom, all cities were isolated. Kings ordered their subjects to  construct roads connecting cities. A lot of roads were built with time.  Every road was always constructed along the line segment between two  cities. All cities are partitioned into disjoint components of cities  by road-connectivity. A connected component of cities was called a  state. A state consists of cities and roads connecting them.</p>
+<p>A historical record tells a time sequence of road constructions in  order. A road connecting two cities<em>A</em> and <em>B</em> doesn’t intersect with  other roads at a point except for<em>A</em> and <em>B</em>. Before construction,<em>A</em>  and <em>B</em> may have belonged to the same state or different states. After  construction,<em>A</em> and <em>B</em> would belong to a same state, i.e., two states  would merge into a state if needed.</p>
+<p>Prof. Kim, a historian, is concerned about the following question: How  many states does a horizontal line (corresponding to the latitude of a  specific place) pass by at a moment of the past? The figure below shows  an example of a configuration of roads at some moment. A circle  represents a city and a line segment represents a road between two  cities. There are 3 states. A line with y = 4.5 passes by two states  with total 8 cities and a line with y = 6.5 passes by one state with 5  cities.</p>
+<p>（逃</p>
+<p>正经：</p>
+<p>平面上有n个城市，初始时城市之间没有任何双向道路相连。你的任务是一次执行以下指令。</p>
+<p>road A B：在城市A和B之间连一条双向道路，保证这条道路不和其他道路在非端点处相交。</p>
+<p>line C：询问一条Y=C的水平线和多少个州相交，以及这些州一共包含多少座城市。</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>看到包含多少城市想到并查集。这里如果单个枚举的话很费时间会T飞</p>
+<p>我们就用线段树来维护区间内的城市数量和州的数量。</p>
+<p>发现其实这题与x轴上的大小值没有任何关系。</p>
+<p>只要考虑y轴坐标的上下最值即可</p>
+<p>注意分类讨论。</p>
+<p>以及并查集的时候别忘记 路径压缩</p>
+<p>线段树update别写炸</p>
+<p>就A了</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>3617啊珂怕</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lc rt&lt;&lt;1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rc rt&lt;&lt;1|1</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e5</span>+<span class="number">5</span>; </span><br><span class="line"><span class="keyword">int</span> miny[maxn],maxy[maxn],n,m,fa[maxn],d[maxn];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getf</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;<span class="keyword">return</span> x == fa[x] ? x : fa[x] = getf(fa[x]);&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(<span class="keyword">int</span> &amp;x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	x=<span class="number">0</span>;<span class="keyword">char</span> ch=getchar();<span class="keyword">int</span> f=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch))&#123;<span class="keyword">if</span>(ch==<span class="string">'-'</span>)f=<span class="number">-1</span>;ch=getchar();&#125;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))&#123;x=x*<span class="number">10</span>+ch-<span class="string">'0'</span>;ch=getchar();&#125;</span><br><span class="line">	x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SegmentTree</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> sum1[maxn&lt;&lt;<span class="number">2</span>],sum2[maxn&lt;&lt;<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">int</span> lazy1[maxn&lt;&lt;<span class="number">2</span>],lazy2[maxn&lt;&lt;<span class="number">2</span>];</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Pushup</span><span class="params">(<span class="keyword">int</span> rt)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		sum1[rt] = sum1[rc] + sum1[lc];</span><br><span class="line">		sum2[rt] = sum2[rc] + sum2[lc];	</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Pushdown</span><span class="params">(<span class="keyword">int</span> rt)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (lazy1[rt])</span><br><span class="line">		&#123;</span><br><span class="line">			sum1[lc] += lazy1[rt];</span><br><span class="line">			sum2[rc] += lazy1[rt];</span><br><span class="line">			lazy1[lc] += lazy1[rt];</span><br><span class="line">			lazy1[rc] += lazy1[rt];</span><br><span class="line">			lazy1[rt] = <span class="number">0</span>;	</span><br><span class="line">		&#125; </span><br><span class="line">		<span class="keyword">if</span> (lazy2[rt])</span><br><span class="line">		&#123;</span><br><span class="line">			sum1[lc] += lazy2[rt];</span><br><span class="line">			sum2[rc] += lazy2[rt];</span><br><span class="line">			lazy2[lc] += lazy2[rt];</span><br><span class="line">			lazy2[rc] += lazy2[rt];</span><br><span class="line">			lazy2[rt] = <span class="number">0</span>;	</span><br><span class="line">		&#125; </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> L,<span class="keyword">int</span> R,<span class="keyword">int</span> x,<span class="keyword">int</span> f)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (L &gt; R) <span class="keyword">return</span> ;</span><br><span class="line">		<span class="keyword">if</span>(L &lt;= l &amp;&amp; R &gt;= r)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(!f)</span><br><span class="line">			&#123;</span><br><span class="line">				lazy1[rt] += x;</span><br><span class="line">				sum1[rt] += x;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				lazy2[rt] += x;</span><br><span class="line">				sum2[rt] += x;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> ;</span><br><span class="line">		&#125; </span><br><span class="line">		Pushdown(rt);</span><br><span class="line">		<span class="keyword">int</span> m = (l+r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span> (l &lt;= m) update(lc,l,m,L,R,x,f);</span><br><span class="line">		<span class="keyword">if</span> (r &gt; m) update(rc,m+<span class="number">1</span>,r,L,R,x,f);</span><br><span class="line">		Pushup(rt);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> c)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (l == r) <span class="keyword">return</span> rt;</span><br><span class="line">		Pushdown(rt);</span><br><span class="line">		<span class="keyword">int</span> m = (l+r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span> (c &lt;= m) <span class="keyword">return</span> query(lc,l,m,c);</span><br><span class="line">		<span class="keyword">else</span> Pushup(rt);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;Tree;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">set_init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(miny,<span class="number">0</span>,<span class="keyword">sizeof</span>(miny));</span><br><span class="line">	<span class="built_in">memset</span>(maxy,<span class="number">0</span>,<span class="keyword">sizeof</span>(maxy));</span><br><span class="line">	<span class="built_in">memset</span>(Tree.lazy1,<span class="number">0</span>,<span class="keyword">sizeof</span>(Tree.lazy1));</span><br><span class="line">	<span class="built_in">memset</span>(Tree.sum1,<span class="number">0</span>,<span class="keyword">sizeof</span>(Tree.sum1));</span><br><span class="line">	<span class="built_in">memset</span>(Tree.lazy2,<span class="number">0</span>,<span class="keyword">sizeof</span>(Tree.lazy2));</span><br><span class="line">	<span class="built_in">memset</span>(Tree.sum2,<span class="number">0</span>,<span class="keyword">sizeof</span>(Tree.sum2));</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">	fa[i] = i;</span><br><span class="line">	<span class="built_in">memset</span>(d,<span class="number">1</span>,<span class="keyword">sizeof</span>(d));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> T,Lim;</span><br><span class="line">	<span class="keyword">int</span> x,y;<span class="keyword">double</span> c;</span><br><span class="line">	<span class="keyword">char</span> opt[<span class="number">13</span>];</span><br><span class="line">	read(T);</span><br><span class="line">	<span class="keyword">while</span>(T--)</span><br><span class="line">	&#123;</span><br><span class="line">		Lim = <span class="number">-0x7fffffff</span>;</span><br><span class="line">		read(n);</span><br><span class="line">		set_init(); </span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> t1,t2;</span><br><span class="line">			read(t1),read(t2);</span><br><span class="line">			miny[i] = maxy[i] = t2;</span><br><span class="line">			Lim = max(Lim,t2);</span><br><span class="line">		&#125;</span><br><span class="line">		Lim++;</span><br><span class="line">		read(m);</span><br><span class="line">		<span class="keyword">while</span>(m--)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%s"</span>,&amp;opt);</span><br><span class="line">			<span class="keyword">if</span>(opt[<span class="number">0</span>] == <span class="string">'r'</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				read(x);read(y);</span><br><span class="line">				<span class="keyword">int</span> px = getf(x),py = getf(y);</span><br><span class="line">				<span class="keyword">if</span>(px == py) ;</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">				&#123;</span><br><span class="line">					<span class="keyword">if</span> (maxy[px] &gt; maxy[py])</span><br><span class="line">					swap(px,py);</span><br><span class="line">					<span class="keyword">if</span> (miny[py] &gt; maxy[px]) &#123;</span><br><span class="line">                        Tree.update(<span class="number">1</span>, <span class="number">1</span>, Lim, maxy[px] + <span class="number">1</span>, miny[py], <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">                        Tree.update(<span class="number">1</span>, <span class="number">1</span>, Lim, maxy[px] + <span class="number">1</span>, miny[py], d[px] + d[py], <span class="number">1</span>);</span><br><span class="line">                        Tree.update(<span class="number">1</span>, <span class="number">1</span>, Lim, miny[px] + <span class="number">1</span>, maxy[px], d[py], <span class="number">1</span>);</span><br><span class="line">                        Tree.update(<span class="number">1</span>, <span class="number">1</span>, Lim, miny[py] + <span class="number">1</span>, maxy[py], d[px], <span class="number">1</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (miny[px] &gt; miny[py]) &#123;</span><br><span class="line">                        Tree.update(<span class="number">1</span>, <span class="number">1</span>, Lim, miny[px] + <span class="number">1</span>, maxy[px], <span class="number">-1</span>, <span class="number">0</span>);</span><br><span class="line">                        Tree.update(<span class="number">1</span>, <span class="number">1</span>, Lim, miny[py] + <span class="number">1</span>, miny[px], d[px], <span class="number">1</span>);</span><br><span class="line">                        Tree.update(<span class="number">1</span>, <span class="number">1</span>, Lim, maxy[px] + <span class="number">1</span>, maxy[py], d[px], <span class="number">1</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> &#123;</span><br><span class="line">                        Tree.update(<span class="number">1</span>, <span class="number">1</span>, Lim, miny[py] + <span class="number">1</span>, maxy[px], <span class="number">-1</span>, <span class="number">0</span>);</span><br><span class="line">                        Tree.update(<span class="number">1</span>, <span class="number">1</span>, Lim, miny[px] + <span class="number">1</span>, miny[py], d[py], <span class="number">1</span>);</span><br><span class="line">                        Tree.update(<span class="number">1</span>, <span class="number">1</span>, Lim, maxy[px] + <span class="number">1</span>, maxy[py], d[px], <span class="number">1</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                    fa[px] = py;</span><br><span class="line">                    d[py] += d[px];</span><br><span class="line">                    miny[py] = min(miny[py], miny[px]);</span><br><span class="line">                    maxy[py] = max(maxy[py], maxy[px]);</span><br><span class="line">                &#125;		</span><br><span class="line">			&#125; </span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">scanf</span>(<span class="string">"%lf"</span>,&amp;c);</span><br><span class="line">				<span class="keyword">int</span> k = Tree.query(<span class="number">1</span>,<span class="number">1</span>,Lim,(<span class="keyword">int</span>)(c+<span class="number">1</span>));</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>,Tree.sum1[k],Tree.sum2[k]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/解题报告/" rel="tag"># -"解题报告"</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/18/区间信息的维护和查询学习笔记/" rel="next" title="区间信息的维护和查询学习笔记">
+                <i class="fa fa-chevron-left"></i> 区间信息的维护和查询学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/22/LA-2191-Potentiometers-树状数组/" rel="prev" title="[LA-2191] Potentiometers 树状数组">
+                [LA-2191] Potentiometers 树状数组 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="karriganasta" />
+            
+              <p class="site-author-name" itemprop="name">karriganasta</p>
+              <p class="site-description motion-element" itemprop="description">an ordinary OIer.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/karriganasta" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://codeforces.com/profile/Wonderrr" target="_blank" title="Codeforces">
+                      
+                        <i class="fa fa-fw fa-cf"></i>Codeforces</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://user.qzone.qq.com/457612138/infocenter" target="_blank" title="QQ">
+                      
+                        <i class="fa fa-fw fa-globe"></i>QQ</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题面"><span class="nav-number">1.</span> <span class="nav-text">题面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">karriganasta</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
