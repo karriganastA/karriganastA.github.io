@@ -568,7 +568,14 @@ W_n^n \equiv g^{P-1}\mod{1}</script><p>所以这个形式只能满足一部分�
 <p>2.约束和函数<script type="math/tex">\sigma(n)=\sigma_1(n)=\sum_{d|n}{d}</script>表示n的约数之和.</p>
 <p>3.欧拉phi函数<script type="math/tex">\varphi(n)=\sum_{i=1}^{n}{[(n,i)=1]\cdot 1}</script>表示不大于<script type="math/tex">n</script>且与<script type="math/tex">n</script>互质的正整数个数.</p>
 <p>4.Mobius函数<script type="math/tex">\mu(n)</script>,在狄利克雷卷积的乘法中与恒等函数互为逆元，<script type="math/tex">\mu(1)=1</script>对于无平方因子数<script type="math/tex">n=\prod_{i=1}^{t}p_i</script>有<script type="math/tex">\mu(n)=(-1)^t</script>，对于有平方因子数n<script type="math/tex">\mu(n)=0</script>.</p>
-<p>5.元函数<script type="math/tex">e(n)=[n=1]</script> 狄利克雷卷积的乘法单位元，完全积性.</p>
+<script type="math/tex; mode=display">
+\mu(n)=\left\{
+\begin{aligned}
+&1,\ n=1\\
+&(-1)^k,\ n=p_1p_2\cdots p_k,\ p_i\ are\ different\ prime\ numbers\\
+&0,\ otherwise
+\end{aligned}
+\right.</script><p>5.元函数<script type="math/tex">e(n)=[n=1]</script> 狄利克雷卷积的乘法单位元，完全积性.</p>
 <p>6.恒等函数<script type="math/tex">I(n)=1</script>，完全积性。</p>
 <p>7.单位函数<script type="math/tex">id(n)=n</script>，完全积性。</p>
 <p>8.幂函数<script type="math/tex">id^k(n) = n^k</script>，完全积性。</p>
