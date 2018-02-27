@@ -81,13 +81,13 @@
 
 
 
-<meta name="description" content="引言史诗级巨坑填完再划 主要参考资料： lych_cys梁大的讲解 MYY的国家集训队论文 Menci’s blog 邓祎明的知乎专栏 学长方尤乐的blog Miskcoo’s blog （和一些奇奇怪怪的东西 预备知识多项式定义（参见初中人教版七年级上课本） 系数表示法将P(X)=a_0+a_1X+a_2X^2+\cdots+a_nX^n的每一个X 前的系数a_i提取出来看作一个n+1维向量 此">
+<meta name="description" content="引言史诗级巨坑填完再划 主要参考资料： lych_cys梁大的讲解 MYY的国家集训队论文 Menci’s blog 邓祎明的知乎专栏 学长方尤乐的blog Miskcoo’s blog （和一些奇奇怪怪的东西">
 <meta name="keywords" content="-&quot;学习笔记&quot;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="FFT&#x2F;NTT学习笔记">
 <meta property="og:url" content="http://yoursite.com/2018/02/25/FFT-NTT学习笔记/index.html">
 <meta property="og:site_name" content="❤ karriganasta&#39;s blog ❤">
-<meta property="og:description" content="引言史诗级巨坑填完再划 主要参考资料： lych_cys梁大的讲解 MYY的国家集训队论文 Menci’s blog 邓祎明的知乎专栏 学长方尤乐的blog Miskcoo’s blog （和一些奇奇怪怪的东西 预备知识多项式定义（参见初中人教版七年级上课本） 系数表示法将P(X)=a_0+a_1X+a_2X^2+\cdots+a_nX^n的每一个X 前的系数a_i提取出来看作一个n+1维向量 此">
+<meta property="og:description" content="引言史诗级巨坑填完再划 主要参考资料： lych_cys梁大的讲解 MYY的国家集训队论文 Menci’s blog 邓祎明的知乎专栏 学长方尤乐的blog Miskcoo’s blog （和一些奇奇怪怪的东西">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/02/25/FFT-NTT学习笔记/4.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/02/25/FFT-NTT学习笔记/2.jpg">
@@ -96,10 +96,10 @@
 <meta property="og:image" content="https://pic1.zhimg.com/80/v2-953d1cd6c91a84197775d504defe302c_hd.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/02/25/FFT-NTT学习笔记/3.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/02/25/FFT-NTT学习笔记/1.jpg">
-<meta property="og:updated_time" content="2018-02-26T12:43:40.225Z">
+<meta property="og:updated_time" content="2018-02-27T12:25:44.382Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FFT&#x2F;NTT学习笔记">
-<meta name="twitter:description" content="引言史诗级巨坑填完再划 主要参考资料： lych_cys梁大的讲解 MYY的国家集训队论文 Menci’s blog 邓祎明的知乎专栏 学长方尤乐的blog Miskcoo’s blog （和一些奇奇怪怪的东西 预备知识多项式定义（参见初中人教版七年级上课本） 系数表示法将P(X)=a_0+a_1X+a_2X^2+\cdots+a_nX^n的每一个X 前的系数a_i提取出来看作一个n+1维向量 此">
+<meta name="twitter:description" content="引言史诗级巨坑填完再划 主要参考资料： lych_cys梁大的讲解 MYY的国家集训队论文 Menci’s blog 邓祎明的知乎专栏 学长方尤乐的blog Miskcoo’s blog （和一些奇奇怪怪的东西">
 <meta name="twitter:image" content="http://yoursite.com/2018/02/25/FFT-NTT学习笔记/4.jpg">
 
 
@@ -360,6 +360,7 @@
 <p><a href="http://www.cnblogs.com/Blog-of-Eden/p/7779717.html" target="_blank" rel="noopener">学长方尤乐的blog</a></p>
 <p><a href="http://blog.miskcoo.com/2015/04/polynomial-multiplication-and-fast-fourier-transform#i-15" target="_blank" rel="noopener">Miskcoo’s blog</a></p>
 <p>（和一些奇奇怪怪的东西</p>
+<a id="more"></a>
 <h2 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h2><h4 id="多项式"><a href="#多项式" class="headerlink" title="多项式"></a>多项式</h4><h5 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h5><p>（参见初中人教版七年级上课本）</p>
 <h5 id="系数表示法"><a href="#系数表示法" class="headerlink" title="系数表示法"></a>系数表示法</h5><p>将<script type="math/tex">P(X)=a_0+a_1X+a_2X^2+\cdots+a_nX^n</script>的每一个<script type="math/tex">X</script> 前的系数<script type="math/tex">a_i</script>提取出来看作一个<script type="math/tex">n+1</script>维向量</p>
 <p>此向量$\vec{a}$就是$P(X)$的系数表示法的向量。</p>
@@ -457,6 +458,10 @@ W_n^n \equiv g^{P-1}\mod{1}</script><p>所以这个形式只能满足一部分�
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/02/27/Mobius反演习题整理/" rel="prev" title="Mobius反演习题整理">
+                Mobius反演习题整理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -536,7 +541,7 @@ W_n^n \equiv g^{P-1}\mod{1}</script><p>所以这个形式只能满足一部分�
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
