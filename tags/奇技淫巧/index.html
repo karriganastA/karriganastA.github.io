@@ -446,9 +446,30 @@
       </section>
 
       
-
+	<p></p>
+	<p></p>
+	<p></p>
+	<p id="hitokoto">Loading...</p>
+<p id="from"></p>
+<script src="https://cdn.bootcss.com/bluebird/3.5.1/bluebird.core.min.js"></script>
+<script src="https://cdn.bootcss.com/fetch/2.0.3/fetch.min.js"></script>
+<script>
+  fetch('https://v1.hitokoto.cn/?c=a')
+    .then(function (res){
+      return res.json();
+    })
+    .then(function (data) {
+      var hitokoto = document.getElementById('hitokoto');
+      var from = document.getElementById('from');
+      hitokoto.innerText = data.hitokoto;
+      from.innerText = data.from;
+    })
+    .catch(function (err) {
+      console.error(err);
+    })
+</script>
       
-
+	
     </div>
   </aside>
 
