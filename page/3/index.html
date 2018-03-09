@@ -253,6 +253,178 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/13/LA-3485-Bridge-基于定积分的二分/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="karriganasta">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="❤ karriganasta's blog ❤">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/13/LA-3485-Bridge-基于定积分的二分/" itemprop="url">[LA-3485] Bridge 基于定积分的二分</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-13T21:56:36+08:00">
+                2018-02-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数学/" itemprop="url" rel="index">
+                    <span itemprop="name">数学</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题面"><a href="#题面" class="headerlink" title="题面"></a>题面</h2><p>传送门:<a href="https://vjudge.net/problem/UVALive-3485" target="_blank" rel="noopener">LA-3485</a><br>题目大意:给定一个抛物线的左右长度和曲线长，求抛物线的底到顶部的距离。</p>
+<h2 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h2><p>Sample Input<br>2<br>20 101 400 4042<br>1 2 3 4<br>Sample Output<br>Case 1:<br>1.00</p>
+<p>Case 2:<br>1.60</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>由上一篇的学习笔记中，我们已经说明过对于一个曲线函数f(x)，如果它的导函数为f’(x),那么在a,b这一段上的曲线长度为</p>
+<script type="math/tex; mode=display">
+\int_a^b\sqrt{1+[f'(x)]^2}dx</script><script type="math/tex; mode=display">
+为什么是这个样子呢？我们可以把f‘(x)展开写成\\\\\Delta y/\Delta x\\\\
+那么在对于\Delta x 趋近于0的时候,(\Delta x)^2+(\Delta y)^2就相当于一个直角三角形斜边的平方.\\\\
+开根号,就是\sqrt{\frac{(\Delta y)^2}{(\Delta x)^2}+1}\\\\
+也就是\sqrt{[f'(x)]^2+1}</script><p>这里不免要运用这个去计算区间内的曲线长度。</p>
+<p>读题，我们可以发现间隔总数为ceil(B/D).每个间隔宽度为(B/n).每个间隔的绳索长度为(L/n)</p>
+<p>我们可以构造一个二次函数,它过0,0且开口向上。</p>
+<p>假设w为宽,h为高</p>
+<p>那么有a(w/2)^2 = h.</p>
+<p>所以a = 4h/(w^2).</p>
+<p>下面就是万恶的积分运算了！</p>
+<p>这里积分我算了两次，第一次是自己没用a来去替换w和h算的,算是硬头皮算的，第二次就参考蓝书了。</p>
+<p>第一次的计算方法:</p>
+<p><img src="/2018/02/13/LA-3485-Bridge-基于定积分的二分/6.jpg" alt="Markdown"></p>
+<p>经过一番试验。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> w,h = <span class="number">1.0</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; w;</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">	&#123; </span><br><span class="line">		<span class="keyword">double</span> ans = w*w/<span class="number">8</span>/h*(<span class="built_in">log</span>(<span class="built_in">abs</span>(<span class="built_in">sqrt</span>(<span class="number">16</span>*h*h/w/w)+<span class="number">4</span>*h/w)) + <span class="number">4</span>*h/w*<span class="built_in">sqrt</span>(<span class="number">16</span>*h*h/w/w+<span class="number">1</span>))/<span class="number">2</span>;</span><br><span class="line">		h += <span class="number">1.0</span>;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		system(<span class="string">"pause"</span>);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>发现随着h的增加这个积分的值也在增加,这是个严格递增积分。<br>就可以用二分求解了！<br>写出这样的代码<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> eps = <span class="number">1e-8</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">double</span> D,H,B,L;</span><br><span class="line"><span class="keyword">int</span> T;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">F</span><span class="params">(<span class="keyword">double</span> w,<span class="keyword">double</span> h)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">double</span> ans = w*w/<span class="number">8</span>/h*(<span class="built_in">log</span>(<span class="built_in">fabs</span>(<span class="built_in">sqrt</span>(<span class="number">16</span>*h*h/w/w)+<span class="number">4</span>*h/w)) + <span class="number">4</span>*h/w*<span class="built_in">sqrt</span>(<span class="number">16</span>*h*h/w/w+<span class="number">1</span>))/<span class="number">2</span>;</span><br><span class="line">	ans *= <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">calc</span><span class="params">(<span class="keyword">double</span> L,<span class="keyword">double</span> w)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">double</span> ll = <span class="number">0.0</span>,rr = H;</span><br><span class="line">	<span class="comment">//while(rr-ll &gt; eps)</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">100</span>;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">double</span> mid = (ll+rr)/<span class="number">2</span>;</span><br><span class="line">		<span class="keyword">if</span> (F(w,mid) - L &gt; eps) rr = mid;</span><br><span class="line">		<span class="keyword">else</span> ll = mid;</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">return</span> (H-ll);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;T);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> kase = <span class="number">1</span>; kase &lt;= T; kase++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Case %d:\n"</span>,kase);</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%lf%lf%lf%lf"</span>,&amp;D,&amp;H,&amp;B,&amp;L);</span><br><span class="line">		<span class="keyword">int</span> n = <span class="built_in">ceil</span>(B/D);</span><br><span class="line">		<span class="keyword">double</span> singleL = L/<span class="keyword">double</span>(n);</span><br><span class="line">		<span class="keyword">double</span> singlew = B/<span class="keyword">double</span>(n);</span><br><span class="line">		<span class="comment">//printf("##debug n:%d L:%.5lf w %.5lf\n",n,singleL,singlew);</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%.5lf\n"</span>,calc(singleL,singlew));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>兴致勃勃地对样例，发现是正确的！！！</p>
+<p>激动啊,自己造了几个凑好的数据发现都没有问题。</p>
+<p>然后扔到OJ上就WA了,不管怎么调精度都是WA。</p>
+<p>于是就考虑到这个方法可能存在误差。只不过很小很小但是在精度以内，会影响答案。</p>
+<p>伤心，看到蓝书写的代换我真的头皮发麻</p>
+<p><img src="/2018/02/13/LA-3485-Bridge-基于定积分的二分/gcc.jpg" alt="Markdown"></p>
+<p>简化了a后发现其实积分中用t与dt代换x的步骤也省去了。</p>
+<p>啊啊啊啊啊啊啊</p>
+<p>难受</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> eps = <span class="number">1e-8</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">double</span> D,H,B,LLL;</span><br><span class="line"><span class="keyword">int</span> T; </span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">f</span><span class="params">(<span class="keyword">double</span> a,<span class="keyword">double</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> aa = a*a,xx = x*x;</span><br><span class="line">    <span class="keyword">return</span> (x*<span class="built_in">sqrt</span>(aa+xx) + aa*<span class="built_in">log</span>(<span class="built_in">fabs</span>(x+<span class="built_in">sqrt</span>(aa+xx))))/<span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">calc</span><span class="params">(<span class="keyword">double</span> w,<span class="keyword">double</span> h)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">double</span> a = <span class="number">4</span>*h/w/w;</span><br><span class="line">	<span class="keyword">double</span> b = <span class="number">1</span>/(<span class="number">2</span>*a);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">4</span>*a*(f(b,w/<span class="number">2</span>)-f(b,<span class="number">0</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;T);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> kase = <span class="number">1</span>; kase &lt;= T; kase++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(kase &gt; <span class="number">1</span>) <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Case %d:\n"</span>,kase);</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%lf%lf%lf%lf"</span>,&amp;D,&amp;H,&amp;B,&amp;LLL);</span><br><span class="line">		<span class="keyword">int</span> n = <span class="built_in">ceil</span>(B/D);</span><br><span class="line">		<span class="keyword">double</span> L = LLL/<span class="keyword">double</span>(n);</span><br><span class="line">		<span class="keyword">double</span> w = B/<span class="keyword">double</span>(n);</span><br><span class="line">		<span class="keyword">double</span> ll = <span class="number">0.0</span>,rr = H;</span><br><span class="line">		<span class="keyword">while</span>(rr-ll &gt; eps)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">double</span> mid = (ll+rr)/<span class="number">2</span>;</span><br><span class="line">			<span class="keyword">if</span> (calc(w,mid) - L &gt; eps) rr = mid;</span><br><span class="line">			<span class="keyword">else</span> ll = mid;</span><br><span class="line">		&#125; </span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%.2lf\n"</span>,H-ll);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/13/数值算法学习笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1703,203 +1875,6 @@ N = \prod_{i=1}^{k}a_i^{p_i}</script><p>不难发现,当质因数分解时各个
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/08/数论基础/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="karriganasta">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="❤ karriganasta's blog ❤">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/08/数论基础/" itemprop="url">数论基础</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-08T18:27:05+08:00">
-                2018-02-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数学/" itemprop="url" rel="index">
-                    <span itemprop="name">数学</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="基本概念及代码"><a href="#基本概念及代码" class="headerlink" title="基本概念及代码"></a>基本概念及代码</h2><h4 id="质数"><a href="#质数" class="headerlink" title="质数"></a>质数</h4><p>质数也称素数,即恰好包含两个不同因子的整数.（好智障啊）<br>1 不是质数.<br>判断单个数是否为质数.<br>如下.</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">is_prime</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (x &lt;= <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (x == <span class="number">2</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= <span class="built_in">sqrt</span>(x+<span class="number">0.5</span>); i++) <span class="comment">//用Sqrt(x+0.5)防止精度失真</span></span><br><span class="line">	<span class="keyword">if</span> (x % i == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>每次的时间复杂度为 O(sqrt(n)).</p>
-<p>但是对于很N个数的质数表单个判断就很无力,因为同一个数的因数会被重复地判断</p>
-<p>比如4被2筛去,但6还要再次被筛一遍.</p>
-<p>所以就诞生了Euler大师的能保证每个数只被筛到一次的线性筛,能做到O(n).</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> Maxn = <span class="number">1e7</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">bool</span> is_prime[Maxn];</span><br><span class="line"><span class="keyword">int</span> prime[Maxn],cnt = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Euler_Prime</span><span class="params">(<span class="keyword">int</span> s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(is_prime,<span class="number">1</span>,<span class="keyword">sizeof</span>(is_prime));</span><br><span class="line">	is_prime[<span class="number">1</span>] = <span class="number">0</span>; <span class="comment">//1 不是质数. </span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= s; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (!is_prime[i]) prime[++cnt] = i;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= cnt &amp;&amp; i * prime[j] &lt;= s; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			is_prime[prime[j] * i] = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">if</span> (i % prime[j] == <span class="number">0</span>) <span class="keyword">break</span>;<span class="comment">//确保了每个合数只被他最小的质因数筛去.6啊</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Euler_Prime(Maxn);</span><br><span class="line">	<span class="keyword">int</span> x;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;x);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,is_prime[x]);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="Euclid算法"><a href="#Euclid算法" class="headerlink" title="Euclid算法."></a>Euclid算法.</h4><p>最简单的是欧氏的辗转相除求最大公约数(gcd)的方法.<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (y == <span class="number">0</span>) ? x : gcd(y,x%y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>会不会爆栈呢?不会,可以证明,gcd的递归层数不超过4.785lgN + 1.6723(紫书P311)</p>
-<p>对于任意的x,y,有lcm(x,y) <em> gcd(x,y) = x</em>y; 证明略请自行百度</p>
-<h4 id="Extended-Euclid算法"><a href="#Extended-Euclid算法" class="headerlink" title="Extended Euclid算法"></a>Extended Euclid算法</h4><p>找出一对整数x,y要求能够使得ax+by = gcd(a,b) 且使得|x| +|y|尽可能的小.<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ex_gcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> &amp;d,<span class="keyword">int</span> &amp;x,<span class="keyword">int</span> &amp;y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!b)&#123;d = a;x = <span class="number">1</span>;y = <span class="number">0</span>;&#125; </span><br><span class="line">	<span class="comment">//如果b = 0，那么就是ax = d，令x = 1,y = 0即可</span></span><br><span class="line">	<span class="keyword">else</span> &#123;ex_gcd(b,a%b,d,y,x) y-=x*(a/b);&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="欧拉phi-φ函数"><a href="#欧拉phi-φ函数" class="headerlink" title="欧拉phi  φ函数"></a>欧拉phi  φ函数</h4><p>公式如下</p>
-<script type="math/tex; mode=display">
-\varphi (n) = n\prod_{i=1}^k(1-\frac{1}{p_i})</script><p>单个欧拉函数可以这样求:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">euler_phi</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> m = <span class="built_in">sqrt</span>(n+<span class="number">0.5</span>);</span><br><span class="line">	<span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= m; i++)</span><br><span class="line">	<span class="keyword">if</span> (n % i == <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		ans = ans * (i<span class="number">-1</span>)/i;</span><br><span class="line">		<span class="keyword">while</span>(n % i == <span class="number">0</span>) n /= i; </span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>以Euler的质数筛 可以类比算出欧拉函数,时间复杂度也为O(n).<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">phi_table</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) phi[i] = <span class="number">0</span>;</span><br><span class="line">	phi[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) <span class="keyword">if</span> (!phi[i])</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = i; j &lt;= n; j+=i)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (!phi[j])</span><br><span class="line">			phi[j] = j;</span><br><span class="line">			phi[j] = phi[j] / i * (i<span class="number">-1</span>); </span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="中国剩余定理（孙子定理）"><a href="#中国剩余定理（孙子定理）" class="headerlink" title="中国剩余定理（孙子定理）"></a>中国剩余定理（孙子定理）</h4><p>问题：今有物不知其数，三三数之剩二，五五数之剩三，七七数之剩二。问物几何？</p>
-<p>说明白一点就是说，存在一个数x，除以3余2，除以5余三，除以7余二，然后求这个数。上面给出了解法。再明白这个解法的原理之前，需要先知道一下两个定理。</p>
-<p>定理1：几个数相加，如果存在一个加数，不能被数a整除，那么它们的和，就不能被整数a整除。</p>
-<p>定理2：两数不能整除，若除数扩大（或缩小）了几倍，而被除数不变，则其商和余数也同时扩大（或缩小）相同的倍数（余数必小于除数）。</p>
-<p>现给出求解该问题的具体步骤：</p>
-<p>1、求出最小公倍数</p>
-<p> lcm=3<em>5</em>7=105</p>
-<p>2、求各个数所对应的基础数</p>
-<p>（1）105÷3=35</p>
-<p> 35÷3=11……2 //基础数35</p>
-<p>（2）105÷5=21</p>
-<p> 21÷5=4……1</p>
-<p> 定理2把1扩大3倍得到3，那么被除数也扩大3倍，得到21 * 3=63//基础数63</p>
-<p>3、105÷7=15</p>
-<p>15÷7=2……1</p>
-<p>定理2把1扩大2倍得到2，那么被除数也扩大2倍，得到15 * 2=30//基础数30</p>
-<p>把得到的基础数加和（注意：基础数不一定就是正数）</p>
-<p>35+63+30=128</p>
-<p>4、减去最小公倍数lcm（在比最小公倍数大的情况下）</p>
-<p>x=128-105=23</p>
-<p>那么满足题意得最小的数就是23了。一共有四个步骤。下面详细解释每一步的原因。</p>
-<p>（1）最小公倍数就不用解释了，跳过（记住，这里讨论的都是两两互质的情况）</p>
-<p>（2）观察求每个数对应的基础数时候的步骤，比如第一个。105÷3=35。显然这个35是除了当前这个数不能整除以外都能够被其他数整除，就是其他数的最小公倍数。相当于找到了最小的开始值，用它去除以3发现正好余2。那么这个基础数就是35。记住35的特征，可以整除其他数但是不能被3整除，并且余数是2。体现的还不够明显，再看下5对应的基础数。21是其他数的最小公倍数，但是不能被5整除，用21除以5得到的余数是1，而要求的数除以5应该是余1的。所以余数被扩大，就得到了相应的基础数63。记住这个数的特征，可以被其他数整除但是被5除应该余三。同理，我们得到了第三个基础数23，那么他的特征就是：可以被其他数整除，但是不能被7整除，并且余数为2。</p>
-<p>（3）第三步基础数加和，为什么要这样做呢？利用就是上面提到的定理1。</p>
-<p>35+63+30=128。对于3来说，可以把63+30的和看作一个整体，应该他们都可以被3整除。看着上面写出的三个数的特征，运用定理1来说，就是在35的基础上加上一个可以被3整除的倍数，那么得到的结果依然还是满足原先的性质的，就是128除以同样还是余2的。同理，对于5还说，这个数被除之后会剩余3；对于7来说，被除之后剩余2。所以说，我们当前得到的这个数是满足题目要求的一个数。但是这个数是不是最小的，那就不一定了。</p>
-<p>（4）应该不能确定是不是最小的数，这个时候就要用到他们的最小公倍数了。最小公倍数顾名思义，一定是一个同时被几个数整除的最小的一个数，所以减去它剩余下来的余数还是符合题意要求的。当然也同样可以运用定理1来解释，只不过是加法变成了减法，道理还是一样的。当然具体要不要剪还是要看和lcm的大小关系的。</p>
-<p>稍微的总结一下：就是已知m1,m2,m3是两两互质的正整数，求最小的正整数x，使它被m1,m2,m3除所得的余数分别是c1,c2,c3。孙子定理的思想便是线分别求出被其中数mi整除余1而被两外两个数整除的数Mi(i=1,2,3)，则所求数之一的便是c1M1+c2M2+c3M3。由此我们可以得到n个两两互质数的情况。证明上面已经一步一步给出。</p>
-<p>那么，到此为止基本的中国剩余定理的内容我们以及了解了，包括解答方法。那么如何编码呢？按照上面这个思路去编码，其实并不难。一共分为四大步。但是，大多数人的困惑在于如何求取基础数。这里呢，提供两种方法：</p>
-<p>（1）第一种就是一直递增，直到找到。例如：3的基础数，35是其他数的最小公倍数。那么就从35开始，一直自增，知道余数为2，便停止（利用while循环）。</p>
-<p>（2）第二种方法呢就是辗转相除法上得来的。这里的例子体现的不够明显，应当看看去求取乘法逆元的过程，下面讲的内容和乘法逆元有很大的关系，所以还是看看的好。简单举个例子：</p>
-<p>假设现在三个数分别是14，3，5，它们两两互质，且要求的数除以5余3。求5对应的基础数。有：</p>
-<p>42÷5=8……2</p>
-<p>5÷2=2……1</p>
-<p>所以1=5 - 2 <em> 2=5 - 2 </em> （42- 8 <em> 5 ）=-2 </em> 42+17 * 5</p>
-<p>那么-2 <em> 42=-84  17 </em> 5=85  -84+85=1</p>
-<p>把1扩大3倍变成3，则有-84 * 3=-252也就是5对应的基础数。</p>
-<p>第一点： 基础数可以是负数，这个之前点到过。//并且下面的解法就是有这样的。</p>
-<p>第二点： 当得到余数为1的时候后面的算式相当于是一个回溯的过程，最后解到-2 * 42。 但是还只不过是余数是1的情况对应的数，再运用定理2我们就得到了-252这个基础数。实际上要是看过乘法逆元，这里实际就是乘法逆元的求解过程，而-2也就是42关于15取模的乘法逆元。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt; </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">//扩展欧几里得算法 </span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">exgcd</span><span class="params">(ll a,ll b,ll &amp;d,ll &amp;x,ll &amp;y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!b)&#123;d=a;x=<span class="number">1</span>,y=<span class="number">0</span>;&#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">	&#123;	</span><br><span class="line">        exgcd(b,a%b,d,y,x);</span><br><span class="line">        y-=(a/b)*x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//中国剩余定理 </span></span><br><span class="line"><span class="function">ll <span class="title">China</span><span class="params">(<span class="keyword">int</span> n,ll *m,ll *a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ll M=<span class="number">1</span>,d,y,x=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++) M*=m[i];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">        ll w=M/m[i];</span><br><span class="line">        gcd(m[i],w,d,d,y);</span><br><span class="line">        x=(x+y*w*a[i])%M;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (x+M)%M;</span><br><span class="line">&#125;</span><br><span class="line">ll m[<span class="number">15</span>],a[<span class="number">15</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%lld%lld"</span>,&amp;m[i],&amp;a[i]);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld"</span>,China(n,m,a));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>题目传送门<br><a href="https://vjudge.net/problem/UVA-11426" target="_blank" rel="noopener">UVa-11426</a><br><a href="https://vjudge.net/problem/UVA-11582" target="_blank" rel="noopener">UVa-11582</a><br><a href="https://vjudge.net/problem/UVA-10375" target="_blank" rel="noopener">UVa-10375</a><br><a href="https://vjudge.net/problem/UVA-10791" target="_blank" rel="noopener">UVa-10791</a></p>
-<p>Last edited - 2018-02-08 karriganasta ❤</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1954,7 +1929,7 @@ N = \prod_{i=1}^{k}a_i^{p_i}</script><p>不难发现,当质因数分解时各个
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
