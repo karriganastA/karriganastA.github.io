@@ -279,6 +279,187 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/Atcoder-Regular-Contest-arc-091-092-切-W-题-A-记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="karriganasta">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/27/Atcoder-Regular-Contest-arc-091-092-切-W-题-A-记/" itemprop="url">Atcoder Regular Contest arc 091-092 切(W)题(A)记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-27T11:26:45+08:00">
+                2018-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Atcoder/" itemprop="url" rel="index">
+                    <span itemprop="name">Atcoder</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>上午闲着没事就找了点Atcoder的（水）题切切, 顺便过一下博弈和SG函数。</p>
+<h4 id="Atcoder-Regular-Contest-091-C-Flip-Flip-and-Flip"><a href="#Atcoder-Regular-Contest-091-C-Flip-Flip-and-Flip" class="headerlink" title="Atcoder Regular Contest 091 C Flip,Flip,and Flip"></a>Atcoder Regular Contest 091 C Flip,Flip,and Flip</h4><p><a href="https://arc091.contest.atcoder.jp/tasks/arc091_a#" target="_blank" rel="noopener">ARC 091C</a></p>
+<p>問題文</p>
+<p>縦横に無限に広がるマス目があり、そのうちの連続する <em>N</em> 行 <em>M</em> 列の領域のすべてのマスに表裏の区別できるカードが置かれています。 最初はすべてのカードが表を向いています。</p>
+<p>以下の操作を、カードが置かれている全てのマスについて 1 度ずつ行います。</p>
+<ul>
+<li>そのマスと辺または点で接する 8 つのマスと、そのマスの合計 9 マスについて、カードが存在するなら裏返す。</li>
+</ul>
+<p>すべての操作を行った後の各カードの状態は操作を行う順番に依らないことが証明できます。 すべての操作を行った後、裏を向いているカードの枚数を求めてください。</p>
+<p>大意</p>
+<p>问题陈述有无限长度和宽度的正方形展开，并且可以区分正面和背面的牌被放置在连续的n行和m列中的所有单元中。最初所有牌都面朝桌子。对于放置卡的每个方块执行一次以下操作。如果有8个方格邻接那个正方形和边或者点，并且如果有一张卡，则总共9个方格。您可以证明执行所有操作后每张卡的状态不取决于操作顺序。完成所有操作后，请找到背面的卡片数量。</p>
+<p>注意细节特判1,1的情况.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> int long long</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x = <span class="number">0</span>,f = <span class="number">1</span>; <span class="keyword">char</span> ch = getchar();</span><br><span class="line">	<span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch))&#123;f = ch == <span class="string">'-'</span> ? <span class="number">-1</span> : <span class="number">1</span>; ch = getchar();&#125;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))&#123;x = (x &lt;&lt; <span class="number">3</span>) + (x &lt;&lt; <span class="number">1</span>) + ch - <span class="string">'0'</span>; ch = getchar();&#125;</span><br><span class="line">	<span class="keyword">return</span> x * f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">(<span class="keyword">signed</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n = read(), m = read();</span><br><span class="line">	<span class="keyword">if</span> (n == <span class="number">1</span> &amp;&amp; m == <span class="number">1</span>) <span class="built_in">printf</span>(<span class="string">"1\n"</span>);</span><br><span class="line"> 	<span class="keyword">else</span> <span class="keyword">if</span> (n == <span class="number">1</span>)</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,m<span class="number">-2</span>);</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (m == <span class="number">1</span>) <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,n<span class="number">-2</span>);</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,n*m-(n+m)*<span class="number">2</span>+<span class="number">4</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Atcoder-Regular-Contest-091-D-Remainder-Reminder"><a href="#Atcoder-Regular-Contest-091-D-Remainder-Reminder" class="headerlink" title="Atcoder Regular Contest 091 D Remainder Reminder"></a>Atcoder Regular Contest 091 D Remainder Reminder</h4><p><a href="https://arc091.contest.atcoder.jp/tasks/arc091_b" target="_blank" rel="noopener">ARC 091D</a></p>
+<h3 id="問題文"><a href="#問題文" class="headerlink" title="問題文"></a>問題文</h3><p>高橋君は、<em>N</em> 以下の正の整数の 2 つ組 (<em>a</em>,<em>b</em>) を持っていましたが、忘れてしまいました。 高橋君は、<em>a</em> を <em>b</em> で割ったあまりが <em>K</em> 以上であったことを覚えています。 高橋君が持っていた組としてあるうるものの個数を求めてください。</p>
+<h3 id="制約"><a href="#制約" class="headerlink" title="制約"></a>制約</h3><ul>
+<li>1≤<em>N</em>≤105</li>
+<li>0≤<em>K</em>≤<em>N</em>−1</li>
+<li>入力は全て整数である</li>
+</ul>
+<p>大意</p>
+<p>给出限制$N,K$,求满足</p>
+<script type="math/tex; mode=display">
+a,b \leq N,令a\equiv x(mod \space b),K\leq x\leq b-1的方案数</script><p>考虑b的范围为$[K+1,N]$</p>
+<p>直接枚举b,然后算出对应范围下的$x$个数，但是注意xmax后有一部分剩余.</p>
+<p>注意细节。（我特么WA了两次啊真彩笔）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> int long long</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x = <span class="number">0</span>,f = <span class="number">1</span>; <span class="keyword">char</span> ch = getchar();</span><br><span class="line">	<span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch))&#123;f = ch == <span class="string">'-'</span> ? <span class="number">-1</span> : <span class="number">1</span>; ch = getchar();&#125;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))&#123;x = (x &lt;&lt; <span class="number">3</span>) + (x &lt;&lt; <span class="number">1</span>) + ch - <span class="string">'0'</span>; ch = getchar();&#125;</span><br><span class="line">	<span class="keyword">return</span> x * f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">(<span class="keyword">signed</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> N = read(),K = read();</span><br><span class="line">	<span class="keyword">if</span> (K == <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		N *= N;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; N;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> b = K+<span class="number">1</span>; b &lt;= N; b++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> xmax = (N)/(b);</span><br><span class="line">		<span class="comment">//cout &lt;&lt; xmax &lt;&lt; " # " &lt;&lt; "\n"; </span></span><br><span class="line">		ans += xmax * (b-K);</span><br><span class="line">		ans += max(<span class="number">0L</span>L,(N - b * xmax) - K + <span class="number">1</span>);</span><br><span class="line">		<span class="comment">//cout &lt;&lt; ans &lt;&lt; endl;</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; ans;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Atcoder-Regular-Contest-091-F-Strange-Nim"><a href="#Atcoder-Regular-Contest-091-F-Strange-Nim" class="headerlink" title="Atcoder Regular Contest 091 F Strange Nim"></a>Atcoder Regular Contest 091 F Strange Nim</h4><p><a href="https://arc091.contest.atcoder.jp/tasks/arc091_d" target="_blank" rel="noopener">ARC 091F</a></p>
+<h3 id="問題文-1"><a href="#問題文-1" class="headerlink" title="問題文"></a>問題文</h3><p>高橋君と青木君は、石取りゲームをしています。最初、山が <em>N</em> 個あり、<em>i</em> 個目の山には <em>A**i</em> 個の石があり、整数 <em>K**i</em> が定まっています。</p>
+<p>高橋君と青木君は、高橋君から始めて、交互に以下の操作を繰り返します。</p>
+<ul>
+<li>山を 1 つ選ぶ。<em>i</em> 個目の山を選び、その山に <em>X</em> 個の石が残っている場合、1 個以上 <em>floor</em>(<em>X</em>⁄<em>K**i</em>) 個以下の任意の個数の石を <em>i</em> 個目の山から取り除く。</li>
+</ul>
+<p>先に操作ができなくなったプレイヤーが負けです。両者最善を尽くしたとき、どちらのプレイヤーが勝つか判定してください。 ただし、<em>floor</em>(<em>x</em>) で <em>x</em> 以下の最大の整数を表します。</p>
+<p>大意:</p>
+<p>给n堆石子，每堆有一开始有ai个和一个常数ki。两个人轮流操作，每个人每轮可以选一堆石子，然后在其中取走1到$\large\frac{a_i}{k_i}$,谁不能操作就算输，问先手必胜还是后手必胜。 </p>
+<p>SG函数+暴力</p>
+<p>不难发现SG函数递推式$SG(x) = SG(x-x/k-1)$</p>
+<p>因为每一次k都是恒等的，考虑直接一步用取模跳到就行，不然T飞。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">210</span>;</span><br><span class="line"><span class="built_in">string</span> s1 = <span class="string">"Takahashi"</span>,s2 = <span class="string">"Aoki"</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x = <span class="number">0</span>,f = <span class="number">1</span>; <span class="keyword">char</span> ch = <span class="built_in">cin</span>.get();</span><br><span class="line">	<span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch))&#123;f = ch == <span class="string">'-'</span> ? <span class="number">-1</span> : <span class="number">1</span>; ch = <span class="built_in">cin</span>.get();&#125;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))&#123;x = (x &lt;&lt; <span class="number">3</span>) + (x &lt;&lt; <span class="number">1</span>) + ch - <span class="string">'0'</span>; ch = <span class="built_in">cin</span>.get();&#125;</span><br><span class="line">	<span class="keyword">return</span> x * f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">	<span class="keyword">int</span> n = read();</span><br><span class="line">	<span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> x = read() , k = read();</span><br><span class="line">		<span class="keyword">while</span>((x%k)) x -= ((x%k<span class="number">-1</span>)/(x/k+<span class="number">1</span>)+<span class="number">1</span>) * (x/k+<span class="number">1</span>);</span><br><span class="line">		ans ^= x/k; </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (ans) <span class="built_in">cout</span> &lt;&lt; s1;</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">cout</span> &lt;&lt; s2;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/09/生成函数学习笔记-干货/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1662,181 +1843,6 @@ f(x)=\prod f(p_i^{k_i})</script><p>$In \space particular,p \space\space is\space
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/27/Mobius反演习题整理/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="karriganasta">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/27/Mobius反演习题整理/" itemprop="url">Mobius反演习题整理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-27T08:58:28+08:00">
-                2018-02-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/莫比乌斯反演/" itemprop="url" rel="index">
-                    <span itemprop="name">莫比乌斯反演</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="题单"><a href="#题单" class="headerlink" title="题单"></a>题单</h2><p>（这边的是做过的..）</p>
-<p><strong>题单在这: <a href="https://www.cnblogs.com/darklove/p/7554314.html" target="_blank" rel="noopener">https://www.cnblogs.com/darklove/p/7554314.html</a></strong></p>
-<p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=2440" target="_blank" rel="noopener">BZOJ-2440</a></p>
-<p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3994" target="_blank" rel="noopener">BZOJ-3994</a>/<a href="https://www.luogu.org/problemnew/show/P3327" target="_blank" rel="noopener">LUOGU-3327</a>双倍经验</p>
-<p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=2154" target="_blank" rel="noopener">BZOJ-2154</a></p>
-<p><a href="http://www.spoj.com/problems/DIVCNT2/" target="_blank" rel="noopener">SPOJ-DIVCNT2</a>(谁来帮我卡个常啊最后的点T飞就差一点点啊啊啊啊啊)</p>
-<p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=2301" target="_blank" rel="noopener">BZOJ-2301</a>/<a href="https://www.luogu.org/problemnew/show/P2522" target="_blank" rel="noopener">LUOGU-2522</a>双倍经验</p>
-<p><a href="http://www.51nod.com/onlineJudge/questionCode.html#%21problemId=1244" target="_blank" rel="noopener">51Nod-1244</a></p>
-<p><a href="http://www.51nod.com/onlineJudge/questionCode.html#%21problemId=1239" target="_blank" rel="noopener">51Nod-1239</a></p>
-<p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3944" target="_blank" rel="noopener">BZOJ-3944</a></p>
-<p><a href="http://www.51nod.com/onlineJudge/questionCode.html#!problemId=1237" target="_blank" rel="noopener">51Nod-1237</a></p>
-<p>—-（不定期添加全凭造化）</p>
-<h2 id="奇技淫巧常用公式整理"><a href="#奇技淫巧常用公式整理" class="headerlink" title="奇技淫巧常用公式整理"></a><del>奇技淫巧</del>常用公式整理</h2><h3 id="狄利克雷卷积"><a href="#狄利克雷卷积" class="headerlink" title="狄利克雷卷积"></a>狄利克雷卷积</h3><p>狄利克雷卷积定义在<font color="#00ffff">数论函数</font>上</p>
-<p></p><h1>狄利克雷卷积</h1><p></p>
-<p></p><h2>定义</h2><p></p>
-<p></p><p>狄利克雷卷积：<mathjax>$\displaystyle (f  \times g)(n) = \sum_{d|n}f(d)*g(\frac{n}{d})$</mathjax></p><p></p>
-<p></p><p>一个例子：<mathjax>$f(x)=2x,g(x)=3x$</mathjax><br>
-则<mathjax>$(f \times g)(6)=f(1)g(6)+f(2)g(3)+f(3)g(2)+f(6)g(1)$</mathjax>。<br>
-往往省略掉<mathjax>$n$</mathjax>。  </p><p></p>
-<p></p><p>狄利克雷卷积定义在<code>数论函数</code>上。  </p><p></p>
-<p><div class="card"><div class="card-main"><div class="card-inner"></div></div></div></p>
-<p></p><p>数论函数： 如果一个函数的定义域为正整数，值域为复数，则称此函数为数论函数。常见的数论函数有欧拉函数<mathjax>$\varphi$</mathjax>和莫比乌斯函数<mathjax>$\mu$</mathjax>。</p><p></p>
-<p></p><p>运算律：</p>
-<ol>
-<li><code>结合律</code>  <mathjax>$(f \times g ) \times h= f \times (g \times h)$</mathjax>。<br></li>
-<li><code>交换律</code>  <mathjax>$f \times g = g \times f$</mathjax>。<br></li>
-<li><code>加法-狄利克雷卷积分配律</code> <mathjax>$f \times (g+h) = f\times g + f \times h$</mathjax>。<br></li>
-<li><code>单位元</code> 单位函数<mathjax>$\epsilon$</mathjax>，使得<mathjax>$f= \epsilon \times f =f \times \epsilon$</mathjax>。<br><br>单位函数的取值：<mathjax>$n=1$</mathjax>时<mathjax>$\epsilon(n)=1$</mathjax>，<mathjax>$n$</mathjax>取其他值时<mathjax>$\epsilon(n)=0$</mathjax>。</li>
-<li><code>逆元</code> 对于任意数论函数<mathjax>$f$</mathjax>，如果<mathjax>$f(1) \not = 0$</mathjax>，则存在<strong>唯一</strong>的逆函数<mathjax>$f^{-1}$</mathjax>，使得 <mathjax>$f \times f^{-1} = \epsilon$</mathjax>：<br><br>对于<mathjax>$n=1$</mathjax>，有：<mathjax>${f^{-1}(1)={\frac {1}{f(1)}}}$</mathjax><br><br>对于<mathjax>$n&gt;1$</mathjax>，有：<mathjax>$ {f^{-1}(n)={\frac {-1}{f(1)}}\displaystyle \sum _{d|n,n\neq d}f({\frac {n}{d}})f^{-1}(d)}$</mathjax>  </li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/27/Mobius反演习题整理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1891,7 +1897,7 @@ f(x)=\prod f(p_i^{k_i})</script><p>$In \space particular,p \space\space is\space
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1902,7 +1908,7 @@ f(x)=\prod f(p_i^{k_i})</script><p>$In \space particular,p \space\space is\space
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
