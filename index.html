@@ -279,6 +279,155 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/28/Treap-Splay-Scapegoat-学习笔记-板子/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="karriganasta">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/28/Treap-Splay-Scapegoat-学习笔记-板子/" itemprop="url">Treap/Splay/Scapegoat 学习笔记&板子</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-28T20:35:45+08:00">
+                2018-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/高级数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">高级数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>先祝贺岁纳京子Toshinou Kyouko生快!</p>
+<p><img src="/2018/03/28/Treap-Splay-Scapegoat-学习笔记-板子/DZW-modW0AE-L0E.jpg" alt="Toshinou Kyouko Senpai"></p>
+<p><img src="/2018/03/28/Treap-Splay-Scapegoat-学习笔记-板子/DZTl7-EU0AApZ7Z.jpg" alt="Toshinou Kyouko"></p>
+<p>啊啊啊啊啊啊可爱死了~~</p>
+<p>彩笔调了一个多小时的Treap…也是没谁了..我好菜啊</p>
+<p>先丢两个板子..Splay明天写.</p>
+<h3 id="Treap"><a href="#Treap" class="headerlink" title="Treap"></a>Treap</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// m     操作有m个</span></span><br><span class="line"><span class="comment">// 1 x   插入元素x</span></span><br><span class="line"><span class="comment">// 2 x   删除元素x。如果成功，输入1，否则输出0</span></span><br><span class="line"><span class="comment">// 3 k   输出值x的“名次”，即比x小的结点个数加1</span></span><br><span class="line"><span class="comment">// 4 x   第k小元素。k=1为最小元素</span></span><br><span class="line"><span class="comment">// 5 x   prefix of x</span></span><br><span class="line"><span class="comment">// 6 x   suffix of x</span></span><br><span class="line"><span class="comment">// ... to be continued ...</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line">	Node *ch[<span class="number">2</span>]; <span class="comment">// 左右子树</span></span><br><span class="line">	<span class="keyword">int</span> r; <span class="comment">// 随机优先级</span></span><br><span class="line">	<span class="keyword">int</span> v; <span class="comment">// 值</span></span><br><span class="line">	<span class="keyword">int</span> s; <span class="comment">// 结点总数</span></span><br><span class="line">	Node(<span class="keyword">int</span> v = <span class="number">0</span>):v(v) &#123;</span><br><span class="line">		ch[<span class="number">0</span>] = ch[<span class="number">1</span>] = <span class="literal">NULL</span>;</span><br><span class="line">		r = rand();</span><br><span class="line">		s = <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">cmp</span><span class="params">(<span class="keyword">int</span> x)</span> <span class="keyword">const</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (x == v) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">return</span> x &lt; v ? <span class="number">0</span> : <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">maintain</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		s = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(ch[<span class="number">0</span>] != <span class="literal">NULL</span>) s += ch[<span class="number">0</span>]-&gt;s;</span><br><span class="line">		<span class="keyword">if</span>(ch[<span class="number">1</span>] != <span class="literal">NULL</span>) s += ch[<span class="number">1</span>]-&gt;s;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rotate</span><span class="params">(Node* &amp;o, <span class="keyword">int</span> d)</span> </span>&#123;</span><br><span class="line">	Node* k = o-&gt;ch[d^<span class="number">1</span>];</span><br><span class="line">	o-&gt;ch[d^<span class="number">1</span>] = k-&gt;ch[d];</span><br><span class="line">	k-&gt;ch[d] = o;</span><br><span class="line">	o-&gt;maintain();</span><br><span class="line">	k-&gt;maintain();</span><br><span class="line">	o = k;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(Node* &amp;o, <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(o == <span class="literal">NULL</span>) o = <span class="keyword">new</span> Node(x);</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">int</span> d = (x &lt; o-&gt;v ? <span class="number">0</span> : <span class="number">1</span>);</span><br><span class="line">		insert(o-&gt;ch[d], x);</span><br><span class="line">		<span class="keyword">if</span>(o-&gt;ch[d]-&gt;r &gt; o-&gt;r) rotate(o, d^<span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	o-&gt;maintain();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">Node* <span class="title">find</span><span class="params">(Node* o, <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(o == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">if</span>(x == o-&gt;v) <span class="keyword">return</span> o;</span><br><span class="line">	<span class="keyword">return</span> x &lt; o-&gt;v ? find(o-&gt;ch[<span class="number">0</span>], x) : find(o-&gt;ch[<span class="number">1</span>], x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">remove</span><span class="params">(Node* &amp;o, <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> d = o-&gt;cmp(x);</span><br><span class="line">	<span class="keyword">if</span>(d == <span class="number">-1</span>) &#123;</span><br><span class="line">		Node* u = o;</span><br><span class="line">		<span class="keyword">if</span>(o-&gt;ch[<span class="number">0</span>] != <span class="literal">NULL</span> &amp;&amp; o-&gt;ch[<span class="number">1</span>] != <span class="literal">NULL</span>) &#123;</span><br><span class="line">			<span class="keyword">int</span> d2 = (o-&gt;ch[<span class="number">0</span>]-&gt;r &gt; o-&gt;ch[<span class="number">1</span>]-&gt;r ? <span class="number">1</span> : <span class="number">0</span>);</span><br><span class="line">			rotate(o, d2);</span><br><span class="line">			remove(o-&gt;ch[d2], x);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">if</span>(o-&gt;ch[<span class="number">0</span>] == <span class="literal">NULL</span>) o = o-&gt;ch[<span class="number">1</span>];</span><br><span class="line">			<span class="keyword">else</span> o = o-&gt;ch[<span class="number">0</span>];</span><br><span class="line">			<span class="keyword">delete</span> u;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; <span class="keyword">else</span></span><br><span class="line">		remove(o-&gt;ch[d], x);</span><br><span class="line">	<span class="keyword">if</span>(o != <span class="literal">NULL</span>) o-&gt;maintain();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">kth</span><span class="params">(Node* o, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(o == <span class="literal">NULL</span> || k &lt;= <span class="number">0</span> || k &gt; o-&gt;s) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> s = (o-&gt;ch[<span class="number">0</span>] == <span class="literal">NULL</span> ? <span class="number">0</span> : o-&gt;ch[<span class="number">0</span>]-&gt;s);</span><br><span class="line">	<span class="keyword">if</span>(k == s+<span class="number">1</span>) <span class="keyword">return</span> o-&gt;v;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(k &lt;= s) <span class="keyword">return</span> kth(o-&gt;ch[<span class="number">0</span>], k);</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> kth(o-&gt;ch[<span class="number">1</span>], k-s<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">rank</span><span class="params">(Node* o, <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(o == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span>(x &lt;= o-&gt;v) <span class="keyword">return</span> rank(o-&gt;ch[<span class="number">0</span>], x);</span><br><span class="line">	<span class="keyword">return</span> rank(o-&gt;ch[<span class="number">1</span>], x) + (o-&gt;ch[<span class="number">0</span>] == <span class="literal">NULL</span> ? <span class="number">0</span> : o-&gt;ch[<span class="number">0</span>]-&gt;s) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">prefix</span><span class="params">(Node *o, <span class="keyword">int</span> k,<span class="keyword">int</span> c)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (o == <span class="literal">NULL</span>) <span class="keyword">return</span> c;</span><br><span class="line">	<span class="keyword">if</span> (k &gt; o-&gt;v) <span class="keyword">return</span> prefix(o-&gt;ch[<span class="number">1</span>],k,o-&gt;v);</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> prefix(o-&gt;ch[<span class="number">0</span>],k,c);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">suffix</span><span class="params">(Node *o, <span class="keyword">int</span> k,<span class="keyword">int</span> c)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (o == <span class="literal">NULL</span>) <span class="keyword">return</span> c;</span><br><span class="line">	<span class="keyword">if</span> (k &lt; o-&gt;v) <span class="keyword">return</span> suffix(o-&gt;ch[<span class="number">0</span>],k,o-&gt;v);</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> suffix(o-&gt;ch[<span class="number">1</span>],k,c);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF = INT_MAX &gt;&gt; <span class="number">1</span>;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">void dfs(Node *o)</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">	if (o == NULL) return ;</span></span><br><span class="line"><span class="comment">	printf("%d\n",o-&gt;v);</span></span><br><span class="line"><span class="comment">	 printf("LC of %d:\n",o-&gt;v);dfs(o-&gt;ch[0]);</span></span><br><span class="line"><span class="comment">	 printf("RC of %d:\n",o-&gt;v); dfs(o-&gt;ch[1]);</span></span><br><span class="line"><span class="comment">	printf("EO %d!\n\n",o-&gt;v); </span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span> </span>&#123;</span><br><span class="line">	srand(<span class="keyword">int</span>(time(<span class="literal">NULL</span>)));</span><br><span class="line">	<span class="keyword">int</span> m, c, v;</span><br><span class="line">	Node* root = <span class="keyword">new</span> Node(INF);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;m);</span><br><span class="line">	<span class="keyword">while</span>(m--) </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;c, &amp;v);</span><br><span class="line">		<span class="keyword">if</span>(c == <span class="number">1</span>) insert(root, v);</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(c == <span class="number">2</span>) &#123;</span><br><span class="line">			Node* o = find(root, v);</span><br><span class="line">			<span class="keyword">if</span>(o != <span class="literal">NULL</span>) remove(root, v);</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span>(c == <span class="number">3</span>) <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, rank(root, v));</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(c == <span class="number">4</span>) <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, kth(root,v));</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(c == <span class="number">5</span>) <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,prefix(root,v,<span class="number">0</span>));</span><br><span class="line">		<span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,suffix(root,v,<span class="number">0</span>));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Scapegoat"><a href="#Scapegoat" class="headerlink" title="Scapegoat"></a>Scapegoat</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> alpha=<span class="number">0.7</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">scapegoat</span>&#123;</span></span><br><span class="line">    scapegoat *l,*r;</span><br><span class="line">    <span class="keyword">int</span> val,size,cnt;</span><br><span class="line">    <span class="keyword">bool</span> deleted;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">is_bad</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> (l-&gt;cnt &gt; alpha*cnt+<span class="number">5</span> || r-&gt;cnt &gt; alpha*cnt+<span class="number">5</span>);&#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">maintain</span><span class="params">()</span></span>&#123;size=!deleted+l-&gt;size+r-&gt;size; cnt=<span class="number">1</span>+r-&gt;cnt+l-&gt;cnt;&#125;</span><br><span class="line">&#125;;</span><br><span class="line">scapegoat *null;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(scapegoat *o,<span class="built_in">vector</span>&lt;scapegoat*&gt; &amp;v)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(o == null) <span class="keyword">return</span>;</span><br><span class="line">    dfs(o-&gt;l,v);</span><br><span class="line">    <span class="keyword">if</span>(!o-&gt;deleted) v.push_back(o);</span><br><span class="line">    dfs(o-&gt;r,v);</span><br><span class="line">    <span class="keyword">if</span>(o-&gt;deleted) <span class="keyword">delete</span> o;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">scapegoat *<span class="title">build</span><span class="params">(<span class="built_in">vector</span>&lt;scapegoat*&gt; &amp;v,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l &gt;= r) <span class="keyword">return</span> null;</span><br><span class="line">    <span class="keyword">int</span> mid = (l+r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    scapegoat *o = v[mid];</span><br><span class="line">    o-&gt;l = build(v,l,mid);</span><br><span class="line">    o-&gt;r = build(v,mid+<span class="number">1</span>,r);</span><br><span class="line">    o-&gt;maintain();</span><br><span class="line">    <span class="keyword">return</span> o;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rebuild</span><span class="params">(scapegoat* &amp;o)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;scapegoat*&gt; v;</span><br><span class="line">    dfs(o,v);</span><br><span class="line">    o = build(v,<span class="number">0</span>,v.size());</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> x,scapegoat* &amp;o)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(o==null)</span><br><span class="line">    &#123;</span><br><span class="line">        o=<span class="keyword">new</span> scapegoat;</span><br><span class="line">        o-&gt;l=o-&gt;r=null;</span><br><span class="line">        o-&gt;deleted=<span class="literal">false</span>;</span><br><span class="line">        o-&gt;size=o-&gt;cnt=<span class="number">1</span>;</span><br><span class="line">        o-&gt;val=x;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        ++o-&gt;size;</span><br><span class="line">        ++o-&gt;cnt;</span><br><span class="line">        <span class="keyword">if</span>(x&gt;=o-&gt;val)</span><br><span class="line">            insert(x,o-&gt;r);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            insert(x,o-&gt;l);</span><br><span class="line">        <span class="keyword">if</span>(o-&gt;is_bad())rebuild(o);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">rank</span><span class="params">(scapegoat *now,<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> ans=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(now!=null)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(now-&gt;val&gt;=x)now=now-&gt;l;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                ans+=now-&gt;l-&gt;size+!now-&gt;deleted;</span><br><span class="line">                now=now-&gt;r;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">kth</span><span class="params">(scapegoat *now,<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(now!=null)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(!now-&gt;deleted &amp;&amp; now-&gt;l-&gt;size+<span class="number">1</span>==x)</span><br><span class="line">            <span class="keyword">return</span> now-&gt;val;</span><br><span class="line">        <span class="keyword">if</span>(now-&gt;l-&gt;size&gt;=x)now=now-&gt;l;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                x-=now-&gt;l-&gt;size+!now-&gt;deleted;</span><br><span class="line">                now=now-&gt;r;</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">erase</span><span class="params">(scapegoat *o,<span class="keyword">int</span> rk)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!o-&gt;deleted &amp;&amp; rk==o-&gt;l-&gt;size+<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        o-&gt;deleted=<span class="number">1</span>;</span><br><span class="line">        --o-&gt;size;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    --o-&gt;size;</span><br><span class="line">    <span class="keyword">if</span>(rk&lt;=o-&gt;l-&gt;size+!o-&gt;deleted)</span><br><span class="line">        erase(o-&gt;l,rk);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        erase(o-&gt;r,rk-o-&gt;l-&gt;size-!o-&gt;deleted);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(<span class="keyword">int</span> &amp;a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> negativ = <span class="number">1</span>;</span><br><span class="line">    a = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">char</span> c = getchar();</span><br><span class="line">    <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))&#123;<span class="keyword">if</span>(c == <span class="string">'-'</span>) negativ = <span class="number">-1</span>; c = getchar();&#125; </span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c)) &#123;a = a*<span class="number">10</span>+c-<span class="string">'0'</span>;c = getchar();&#125;</span><br><span class="line">    a *= negativ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">scapegoat *root;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    null = <span class="keyword">new</span> scapegoat;</span><br><span class="line">    root = null;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    read(n);</span><br><span class="line">    <span class="keyword">while</span>(n--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> op,x;</span><br><span class="line">        read(op); read(x);</span><br><span class="line">        <span class="keyword">if</span>(op==<span class="number">1</span>)insert(x,root);</span><br><span class="line">        <span class="keyword">if</span>(op==<span class="number">2</span>)erase(root,rank(root,x));</span><br><span class="line">        <span class="keyword">if</span>(op==<span class="number">3</span>)<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,rank(root,x));</span><br><span class="line">        <span class="keyword">if</span>(op==<span class="number">4</span>)<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,kth(root,x));</span><br><span class="line">        <span class="keyword">if</span>(op==<span class="number">5</span>)<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,kth(root,rank(root,x)<span class="number">-1</span>));</span><br><span class="line">        <span class="keyword">if</span>(op==<span class="number">6</span>)<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,kth(root,rank(root,x+<span class="number">1</span>)));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/Atcoder-Regular-Contest-arc-091-092-切-W-题-A-记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1684,165 +1833,6 @@ num'(i) = num(fail'(i))+1</script><p>相当于同时维护了两个失配数组�
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/28/洲阁筛学习总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="karriganasta">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/28/洲阁筛学习总结/" itemprop="url">洲阁筛学习总结</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-28T18:42:09+08:00">
-                2018-02-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/洲阁筛/" itemprop="url" rel="index">
-                    <span itemprop="name">洲阁筛</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>(不知不觉又给自己挖了个坑.)</p>
-<p>ckr : “我只是在无敌的路上越走越远”</p>
-<h2 id="洲阁筛食用方法"><a href="#洲阁筛食用方法" class="headerlink" title="洲阁筛食用方法"></a>洲阁筛食用方法</h2><h3 id="食用范围"><a href="#食用范围" class="headerlink" title="食用范围"></a>食用范围</h3><p>大部分的情况差不多这样:</p>
-<p>给出一个积性函数$f(x)$满足积性函数的基本性质,$f(1)=1$,如果$gcd(a,b)=1$有$f(ab)=f(a)f(b)$.</p>
-<p>那么根据唯一分解定理,就是$x=\prod _{i=1}^np_i^{k_i}$就可以:</p>
-<script type="math/tex; mode=display">
-\large
-f(x)=\prod f(p_i^{k_i})</script><p>$In \space particular,p \space\space is\space a\space prime\space number$，而且$f(p^c)$可以快速求出.</p>
-<p>一般的题目差不多都这样:</p>
-<p>$f(x)$是一个数论函数,要求$\sum_{i=1}^nf(i)$,而且你发现,杜教筛完全不能用卷积简化，你被题目的形式深深卡死！</p>
-<p><del>啊♂</del></p>
-<p>洲阁筛就出现了。</p>
-<h3 id="食用思想"><a href="#食用思想" class="headerlink" title="食用思想"></a>食用思想</h3><p><strong>主要的核心思想在于:分类</strong></p>
-<p><strong>引理：</strong>$n$以内的数,最多只有一个大于$\sqrt{n}$的质因数:</p>
-<p>$Proof:$</p>
-<p>​    假设原命题不成立,即存在有两个大于$\sqrt{n}$的质因数,</p>
-<p>​    那么不妨设这两个质因数是$n_1,n_2$ 于是有$n_1n_2&gt;n$,但这是不可能的！</p>
-<p>​    $\therefore$假设命题不成立，原命题正确.</p>
-<h2 id=""><a href="#" class="headerlink" title=" "></a> </h2>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1897,7 +1887,7 @@ f(x)=\prod f(p_i^{k_i})</script><p>$In \space particular,p \space\space is\space
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
