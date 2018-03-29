@@ -279,6 +279,158 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/29/奇技淫巧-bitset大法吼啊/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="karriganasta">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="karriganasta's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/29/奇技淫巧-bitset大法吼啊/" itemprop="url">[奇技淫巧] bitset大法吼啊</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-29T20:32:46+08:00">
+                2018-03-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bitset/" itemprop="url" rel="index">
+                    <span itemprop="name">bitset</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>bitset不止一次听大爷们安利过了…</p>
+<p><del>似乎</del> 挺厉害的.<br>因为bool数组在用的时候只能够用一个byte但是byte有8个bit,0/1只要1个就够了.. 所以浪费了7个bit.</p>
+<p><strong>Reference:</strong></p>
+<p><a href="http://zh.cppreference.com/w/cpp/utility/bitset" target="_blank" rel="noopener">bitset/zh-cpp-reference</a></p>
+<p><a href="http://www.cplusplus.com/reference/bitset/bitset/?kw=bitset" target="_blank" rel="noopener">bitset/cppcontainer</a></p>
+<p><del>hfq is so toxic.!</del></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bitset&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//正常的构造 </span></span><br><span class="line">	<span class="built_in">bitset</span>&lt;8&gt;a(<span class="number">42</span>); <span class="comment">//[0,0,1,0,1,0,1,0]</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; a &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">bitset</span>&lt;70&gt;b(LLONG_MAX); </span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; b &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//字符串string构造</span></span><br><span class="line">	<span class="built_in">string</span> bit_s = <span class="string">"110010"</span>;</span><br><span class="line">	<span class="built_in">bitset</span>&lt;8&gt;c(bit_s);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; c &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="comment">// bitset&lt;sz&gt;b(bit_string,x,(y));</span></span><br><span class="line">	<span class="built_in">bitset</span>&lt;8&gt;d(bit_s,<span class="number">2</span>); <span class="comment">//字符串的第 x+1(下标为x)个及之后的甩进bitset.</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; d &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">bitset</span>&lt;8&gt;e(bit_s,<span class="number">0</span>,<span class="number">3</span>); <span class="comment">//字符串的第 x+1(下标为x) 及共y个甩进bitset. </span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; e &lt;&lt; <span class="built_in">endl</span>; </span><br><span class="line">	</span><br><span class="line">	<span class="comment">// string的自定义构造0,1串</span></span><br><span class="line">	<span class="built_in">string</span> bit_as = <span class="string">"HHHJJJHHJH"</span>;</span><br><span class="line">	<span class="built_in">bitset</span>&lt;10&gt;f(bit_as,<span class="number">0</span>,bit_as.size(),<span class="string">'H'</span>,<span class="string">'J'</span>); <span class="comment">//把H设为0，J设为1,如果出现了其他的字符就返回错误 </span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; f &lt;&lt; <span class="built_in">endl</span>; </span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Atcoder-Grand-Contest-AGC-020-C-Median-Sum"><a href="#Atcoder-Grand-Contest-AGC-020-C-Median-Sum" class="headerlink" title="Atcoder Grand Contest AGC 020 C Median Sum"></a>Atcoder Grand Contest AGC 020 C Median Sum</h4><p><a href="https://agc020.contest.atcoder.jp/tasks/agc020_c" target="_blank" rel="noopener">AGC 020C</a></p>
+<p><strong>水题(<del>我还是不会做</del>)</strong></p>
+<p>用bitset维护一个类似背包的东西..</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n,ret = <span class="number">0</span>;</span><br><span class="line"><span class="built_in">bitset</span>&lt;4000010&gt;f;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x = <span class="number">0</span>,f = <span class="number">1</span>; <span class="keyword">char</span> ch = getchar();</span><br><span class="line">	<span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch))&#123;f = ch == <span class="string">'-'</span> ? <span class="number">-1</span> : <span class="number">1</span>; ch = getchar();&#125;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))&#123;x = (x &lt;&lt; <span class="number">3</span>) + (x &lt;&lt; <span class="number">1</span>) + ch - <span class="string">'0'</span>; ch = getchar();&#125;</span><br><span class="line">	<span class="keyword">return</span> x*f;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	n = read();</span><br><span class="line">	f[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(n--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> x = read();</span><br><span class="line">		f = f|(f&lt;&lt;x);</span><br><span class="line">		ret += x;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">for</span> (i = (ret+<span class="number">1</span>)/<span class="number">2</span>; !f[i]; i++);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; i;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/28/Treap-Splay-Scapegoat-学习笔记-板子/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1688,153 +1840,6 @@ num'(i) = num(fail'(i))+1</script><p>相当于同时维护了两个失配数组�
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/01/奇技淫巧-算法竞赛常数优化技巧-代码风格总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="karriganasta">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="karriganasta's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/01/奇技淫巧-算法竞赛常数优化技巧-代码风格总结/" itemprop="url">[奇技淫巧]算法竞赛常数优化技巧/代码风格总结</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-01T10:59:35+08:00">
-                2018-03-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/奇技淫巧/" itemprop="url" rel="index">
-                    <span itemprop="name">奇技淫巧</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h2><p>这几天被卡常恶心到的挺多的..所以不得不恶补了一波黑科技的卡常技巧，然后代码风格的问题很久就想写了..</p>
-<p>所以就当做个总结吧。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/01/奇技淫巧-算法竞赛常数优化技巧-代码风格总结/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1889,7 +1894,7 @@ num'(i) = num(fail'(i))+1</script><p>相当于同时维护了两个失配数组�
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1900,7 +1905,7 @@ num'(i) = num(fail'(i))+1</script><p>相当于同时维护了两个失配数组�
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
