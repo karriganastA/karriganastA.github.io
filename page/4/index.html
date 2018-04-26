@@ -279,6 +279,183 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/12/UVa-10870-Recurrences-矩阵构造与快速幂/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="karriganasta">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="karriganasta's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/12/UVa-10870-Recurrences-矩阵构造与快速幂/" itemprop="url">[UVa-10870] Recurrences(矩阵构造与快速幂)</a></h1>
+        
+
+        <div class="post-meta">
+		
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-12T13:09:30+08:00">
+                2018-02-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数学/" itemprop="url" rel="index">
+                    <span itemprop="name">数学</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题面"><a href="#题面" class="headerlink" title="题面"></a>题面</h2><p>传送门:<a href="https://vjudge.net/problem/UVA-10870" target="_blank" rel="noopener">UVa-10870</a><br>题目大意:给出F(n)的递推式,求出F(n)%m的值。</p>
+<p>Consider recurrent functions of the following form:<br>f(n) = a1f(n − 1) + a2f(n − 2) + a3f(n − 3) + . . . + adf(n − d), for n &gt; d,<br>where a1, a2, . . . , ad are arbitrary constants.<br>A famous example is the Fibonacci sequence, defined as: f(1) = 1, f(2) = 1, f(n) = f(n − 1) +f(n − 2). Here d = 2, a1 = 1, a2 = 1.</p>
+<p>Every such function is completely described by specifying d (which is called the order of recurrence),values of d coefficients: a1, a2, . . . , ad, and values of f(1), f(2), . . . , f(d). You’ll be given these numbers,and two integers n and m. Your program’s job is to compute f(n) modulo m.<br>Input<br>Input file contains several test cases. Each test case begins with three integers: d, n, m, followed bytwo sets of d non-negative integers. The first set contains coefficients: a1, a2, . . . , ad. The second set gives values of f(1), f(2), . . . , f(d).<br>You can assume that: 1 ≤ d ≤ 15, 1 ≤ n ≤ 2^31-1，1 ≤ m ≤ 46340. All numbers in the input will fit in signed 32-bit integer.<br>Input is terminated by line containing three zeroes instead of d, n, m. Two consecutive test cases<br>are separated by a blank line.<br>Output<br>For each test case, print the value of f(n)( mod m) on a separate line. It must be a non-negative integer,<br>less than m.</p>
+<h2 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h2><p>Sample Input<br>1 1 100<br>2<br>1<br>2 10 100<br>1 1<br>1 1<br>3 2147483647 12345<br>12345678 0 12345<br>1 2 3<br>0 0 0<br>Sample Output<br>1<br>55<br>423</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>很明显是一个构造类的问题，我们如果能够从f(n)递推到f(n+1)就可以使矩阵快速幂了<br>比如当d=5时,不难写出这样的矩阵乘法</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+    a_1 &a_2&a_3&a_4&a_5\\\\
+    1 & 0 &0 &0 &0 \\\\
+    0& 1 &0&0&0\\\\
+    0& 0& 1 &0 &0\\\\
+    0&0 &0 & 1 &0
+\end{bmatrix} 
+*
+\begin{bmatrix}
+     f(n)\\\\
+     f(n-1)\\\\
+     f(n-2)\\\\
+     f(n-3)\\\\
+     f(n-4)\\\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+     f(n+1)\\\\
+     f(n)\\\\
+     f(n-1)\\\\
+     f(n-2)\\\\
+     f(n-3)\\\\
+\end{bmatrix}</script><p>同理d为任意值时都可以写出这样的矩阵乘法。</p>
+<p>这样我们就可以定义一个常数矩阵A,在从f(n)递推到f(n+1)乘以A即可,我们已经知道了f(1)到f(d)的值</p>
+<p>从f(d)到f(n)一共要乘以A （n-d）次</p>
+<p>一个矩阵快速幂即可其中快速幂的复杂度为logn,矩阵的复杂度为d^3(没有优化的话)</p>
+<p>因此时间复杂度为</p>
+<script type="math/tex; mode=display">
+O(d^3log_2n)</script><p>这便是正解了。qwq</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"></span><br><span class="line">LL d,m,f[<span class="number">26</span>];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span>LL a[<span class="number">16</span>][<span class="number">16</span>];&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function">node <span class="title">multi</span><span class="params">(node x,node y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    node t;</span><br><span class="line">    <span class="built_in">memset</span>(t.a,<span class="number">0</span>,<span class="keyword">sizeof</span>(t.a));</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= d; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= d; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= d; k++)</span><br><span class="line">                t.a[i][j] = (t.a[i][j]+x.a[i][k]*y.a[k][j])%m;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> t;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">LL <span class="title">find</span><span class="params">(LL n,node sa)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    node t;</span><br><span class="line">    <span class="built_in">memset</span>(t.a,<span class="number">0</span>,<span class="keyword">sizeof</span>(t.a));</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=d; i++)  t.a[i][i]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(n)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(n&amp;<span class="number">1</span>) t=multi(t,sa);</span><br><span class="line">        sa=multi(sa,sa);</span><br><span class="line">        n&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    LL ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=d;i++)</span><br><span class="line">        ans=(ans+t.a[<span class="number">1</span>][i]*f[i])%m;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    LL n;</span><br><span class="line">    node sa;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%lld%lld%lld"</span>,&amp;d,&amp;n,&amp;m) == <span class="number">3</span> &amp;&amp;d)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">memset</span>(sa.a,<span class="number">0</span>,<span class="keyword">sizeof</span>(sa.a));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=d; i++)</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;sa.a[<span class="number">1</span>][i]);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=d; i&gt;=<span class="number">1</span>; i--)</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;f[i]);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>; i&lt;=d; i++)</span><br><span class="line">            sa.a[i][i<span class="number">-1</span>]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(n&lt;=d) <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,f[d-n+<span class="number">1</span>]%m);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,find(n-d,sa));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/10/矩阵和线性方程组学习笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1463,7 +1640,7 @@ N = \prod_{i=1}^{k}a_i^{p_i}</script><p>不难发现,当质因数分解时各个
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1474,7 +1651,7 @@ N = \prod_{i=1}^{k}a_i^{p_i}</script><p>不难发现,当质因数分解时各个
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1485,7 +1662,7 @@ N = \prod_{i=1}^{k}a_i^{p_i}</script><p>不难发现,当质因数分解时各个
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
