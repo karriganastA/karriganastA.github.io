@@ -1,7 +1,8 @@
 #include<bits/stdc++.h>
 using namespace std;
+char ss[1<<20],*A=ss,*B=ss;
 inline char gc(){return A==B&&(B=(A=ss)+fread(ss,1,1<<20,stdin),A==B)?EOF:*A++;}
-inline int read(void){int x=0,f=1;char c=getchar();while(!isdigit(c)){f=c=='-'?-1:1;c=gc();}while(isdigit(c)){x=(x<<3)+(x<<1)+c-'0';c=gc();}}
+inline int read(void){int x=0,f=1;char c=getchar();while(!isdigit(c)){f=c=='-'?-1:1;c=gc();}while(isdigit(c)){x=(x<<3)+(x<<1)+c-'0';c=gc();}return x * f;}
 int main(int argc, char *argv[])
 {
 	
