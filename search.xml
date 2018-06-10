@@ -3,6 +3,27 @@
   
     
     <entry>
+      <title>「Codeforces」 Educational Round 42复盘</title>
+      <link href="/2018/06/10/%E3%80%8CCodeforces%E3%80%8D-Educational-Round-42%E5%A4%8D%E7%9B%98/"/>
+      <url>/2018/06/10/%E3%80%8CCodeforces%E3%80%8D-Educational-Round-42%E5%A4%8D%E7%9B%98/</url>
+      <content type="html"><![CDATA[<p>垃圾ER,整天卡人的小数据出出</p><p>题意不明不知道要构造的图的性质</p><p>卡我一个多小时的D,最后就改了一行代码赛后一发AC（赛时4发WA）,体验极差！</p><p>掉Rating是肯定的.</p><p>shit.</p><p>:(</p>]]></content>
+      
+      <categories>
+          
+          <category> ELO Record </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Codeforces </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>「POJ-3237」Tree </title>
       <link href="/2018/06/10/%E3%80%8CPOJ-3237%E3%80%8DTree/"/>
       <url>/2018/06/10/%E3%80%8CPOJ-3237%E3%80%8DTree/</url>
