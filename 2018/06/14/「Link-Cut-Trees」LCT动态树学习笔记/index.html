@@ -94,7 +94,7 @@
 
 
 
-  <meta name="keywords" content="-"学习笔记"," />
+  <meta name="keywords" content="学习笔记," />
 
 
 
@@ -107,18 +107,18 @@
 
 
 
-<meta name="description" content="(不知不觉又给自己挖了个坑.) ckr : “我只是在无敌的路上越走越远” 洲阁筛食用方法食用范围大部分的情况差不多这样: 给出一个积性函数$f(x)$满足积性函数的基本性质,$f(1)=1$,如果$gcd(a,b)=1$有$f(ab)=f(a)f(b)$. 那么根据唯一分解定理,就是$x=\prod _{i=1}^np_i^{k_i}$就可以:  \large f(x)=\prod f(p_i^">
-<meta name="keywords" content="-&quot;学习笔记&quot;">
+<meta name="description" content="调了差不多一下午+晚上左右的LCT,算是搞懂了 感谢qxq巨爷的倾情讲解（大雾 LCT讲稿(无比生动版) LUOGU P3690 LCT[模板] Link there 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626">
+<meta name="keywords" content="学习笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="洲阁筛学习总结">
-<meta property="og:url" content="http://yoursite.com/2018/02/28/洲阁筛学习总结/index.html">
+<meta property="og:title" content="「Link-Cut-Trees」LCT动态树学习笔记">
+<meta property="og:url" content="http://yoursite.com/2018/06/14/「Link-Cut-Trees」LCT动态树学习笔记/index.html">
 <meta property="og:site_name" content="karriganasta&#39;s blog">
-<meta property="og:description" content="(不知不觉又给自己挖了个坑.) ckr : “我只是在无敌的路上越走越远” 洲阁筛食用方法食用范围大部分的情况差不多这样: 给出一个积性函数$f(x)$满足积性函数的基本性质,$f(1)=1$,如果$gcd(a,b)=1$有$f(ab)=f(a)f(b)$. 那么根据唯一分解定理,就是$x=\prod _{i=1}^np_i^{k_i}$就可以:  \large f(x)=\prod f(p_i^">
+<meta property="og:description" content="调了差不多一下午+晚上左右的LCT,算是搞懂了 感谢qxq巨爷的倾情讲解（大雾 LCT讲稿(无比生动版) LUOGU P3690 LCT[模板] Link there 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-28T13:00:07.000Z">
+<meta property="og:updated_time" content="2018-06-14T16:03:36.133Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="洲阁筛学习总结">
-<meta name="twitter:description" content="(不知不觉又给自己挖了个坑.) ckr : “我只是在无敌的路上越走越远” 洲阁筛食用方法食用范围大部分的情况差不多这样: 给出一个积性函数$f(x)$满足积性函数的基本性质,$f(1)=1$,如果$gcd(a,b)=1$有$f(ab)=f(a)f(b)$. 那么根据唯一分解定理,就是$x=\prod _{i=1}^np_i^{k_i}$就可以:  \large f(x)=\prod f(p_i^">
+<meta name="twitter:title" content="「Link-Cut-Trees」LCT动态树学习笔记">
+<meta name="twitter:description" content="调了差不多一下午+晚上左右的LCT,算是搞懂了 感谢qxq巨爷的倾情讲解（大雾 LCT讲稿(无比生动版) LUOGU P3690 LCT[模板] Link there 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626">
 
 
 
@@ -148,13 +148,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/02/28/洲阁筛学习总结/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/06/14/「Link-Cut-Trees」LCT动态树学习笔记/"/>
 
 
 
 
 
-  <title>洲阁筛学习总结 | karriganasta's blog</title>
+  <title>「Link-Cut-Trees」LCT动态树学习笔记 | karriganasta's blog</title>
   
 
 
@@ -280,7 +280,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/28/洲阁筛学习总结/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/14/「Link-Cut-Trees」LCT动态树学习笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="karriganasta">
@@ -297,7 +297,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">洲阁筛学习总结</h1>
+          <h1 class="post-title" itemprop="name headline">「Link-Cut-Trees」LCT动态树学习笔记</h1>
         
 
         <div class="post-meta">
@@ -310,8 +310,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-28T18:42:09+08:00">
-                2018-02-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-14T23:58:42+08:00">
+                2018-06-14
               </time>
             
 
@@ -333,8 +333,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/洲阁筛/" itemprop="url" rel="index">
-                    <span itemprop="name">洲阁筛</span>
+                  <a href="/categories/动态树/" itemprop="url" rel="index">
+                    <span itemprop="name">动态树</span>
                   </a>
                 </span>
 
@@ -364,7 +364,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  292字
+                  676字
                 </span>
               
 
@@ -380,7 +380,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1分钟
+                  4分钟
                 </span>
               
             </div>
@@ -401,25 +401,14 @@
       
 
       
-        <p>(不知不觉又给自己挖了个坑.)</p>
-<p>ckr : “我只是在无敌的路上越走越远”</p>
-<h2 id="洲阁筛食用方法"><a href="#洲阁筛食用方法" class="headerlink" title="洲阁筛食用方法"></a>洲阁筛食用方法</h2><h3 id="食用范围"><a href="#食用范围" class="headerlink" title="食用范围"></a>食用范围</h3><p>大部分的情况差不多这样:</p>
-<p>给出一个积性函数$f(x)$满足积性函数的基本性质,$f(1)=1$,如果$gcd(a,b)=1$有$f(ab)=f(a)f(b)$.</p>
-<p>那么根据唯一分解定理,就是$x=\prod _{i=1}^np_i^{k_i}$就可以:</p>
-<script type="math/tex; mode=display">
-\large
-f(x)=\prod f(p_i^{k_i})</script><p>$In \space particular,p \space\space is\space a\space prime\space number$，而且$f(p^c)$可以快速求出.</p>
-<p>一般的题目差不多都这样:</p>
-<p>$f(x)$是一个数论函数,要求$\sum_{i=1}^nf(i)$,而且你发现,杜教筛完全不能用卷积简化，你被题目的形式深深卡死！</p>
-<p><del>啊♂</del></p>
-<p>洲阁筛就出现了。</p>
-<h3 id="食用思想"><a href="#食用思想" class="headerlink" title="食用思想"></a>食用思想</h3><p><strong>主要的核心思想在于:分类</strong></p>
-<p><strong>引理：</strong>$n$以内的数,最多只有一个大于$\sqrt{n}$的质因数:</p>
-<p>$Proof:$</p>
-<p>​    假设原命题不成立,即存在有两个大于$\sqrt{n}$的质因数,</p>
-<p>​    那么不妨设这两个质因数是$n_1,n_2$ 于是有$n_1n_2&gt;n$,但这是不可能的！</p>
-<p>​    $\therefore$假设命题不成立，原命题正确.</p>
-<h2 id=""><a href="#" class="headerlink" title=" "></a> </h2>
+        <p><strong>调了差不多一下午+晚上左右的LCT,算是搞懂了</strong></p>
+<p><strong>感谢qxq巨爷的倾情讲解（大雾</strong></p>
+<p><strong><a href="download\LCT-0[无比生动版讲稿].doc">LCT讲稿(无比生动版)</a></strong></p>
+<p>LUOGU P3690 LCT[模板]</p>
+<p><a href="https://www.luogu.org/problemnew/show/P3690" target="_blank" rel="noopener">Link there</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//my vegetable has exploded. :(</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> max(x,y) (x&gt;y?x:y)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> min(x,y) (x&lt;y?x:y)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MM(x,y) memset(x,y,sizeof(x))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MCPY(a,b) memcpy(a,b,sizeof(b))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rep(i,a,b) for(int i=a;i&lt;=b;i++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> per(i,a,b) for(int i=b;i&gt;=a;i--)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> se second</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lc ch[u][0]</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rc ch[u][1]</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">quickpow</span><span class="params">(<span class="keyword">int</span> m,<span class="keyword">int</span> n,<span class="keyword">int</span> p)</span></span>&#123;<span class="keyword">int</span> b=<span class="number">1</span>;<span class="keyword">while</span>(n)&#123;<span class="keyword">if</span>(n&amp;<span class="number">1</span>)b=b*m%p;n=n&gt;&gt;<span class="number">1</span>;m=m*m%p;&#125;<span class="keyword">return</span> b;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">getinv</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> p)</span></span>&#123;<span class="keyword">return</span> quickpow(x,p<span class="number">-2</span>,p);&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x=<span class="number">0</span>,f=<span class="number">1</span>;<span class="keyword">char</span> ch=getchar();</span><br><span class="line">	<span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch))&#123;f=ch==<span class="string">'-'</span>?<span class="number">-1</span>:<span class="number">1</span>;ch=getchar();&#125;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))&#123;x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+ch-<span class="string">'0'</span>;ch=getchar();&#125;</span><br><span class="line">	<span class="keyword">return</span> x * f;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">///------------------head------------------</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m,op;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">3e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">LinkCutTree</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> ch[MAXN][<span class="number">2</span>],sum[MAXN],rev[MAXN],w[MAXN],fa[MAXN];</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">isRson</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;<span class="keyword">return</span> ch[fa[u]][<span class="number">1</span>] == u;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">isRoot</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;<span class="keyword">return</span> (ch[fa[u]][<span class="number">0</span>] != u &amp;&amp; ch[fa[u]][<span class="number">1</span>] != u);&#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Reverse</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;rev[u] ^= <span class="number">1</span>;swap(lc,rc);&#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushdown</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;<span class="keyword">if</span>(rev[u])&#123;<span class="keyword">if</span> (lc) Reverse(lc); <span class="keyword">if</span>(rc)Reverse(rc); rev[u]=<span class="number">0</span>;&#125;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushup</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;sum[u]=sum[lc]^sum[rc]^w[u];&#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Update</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;<span class="keyword">if</span> (!isRoot(u)) Update(fa[u]); pushdown(u);&#125;</span><br><span class="line"><span class="comment">/* ----------- Splay part ------------*/</span></span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> fau = fa[u],ffau = fa[fau],d = isRson(u);</span><br><span class="line">        fa[u]=ffau; <span class="keyword">if</span> (!isRoot(fau)) ch[ffau][isRson(fau)] = u;</span><br><span class="line">        fa[ch[fau][d] = ch[u][d^<span class="number">1</span>]] = fau;</span><br><span class="line">        fa[ch[u][d^<span class="number">1</span>] = fau] = u;</span><br><span class="line">        pushup(fau); pushup(u);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Splay</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123; <span class="comment">//边Splay边向根传递信息</span></span><br><span class="line">        Update(u);</span><br><span class="line">        <span class="keyword">for</span> (;(!isRoot(u));rotate(u))&#123;</span><br><span class="line">            <span class="keyword">if</span> (!isRoot(fa[u]))</span><br><span class="line">            rotate(isRson(fa[u])==isRson(u)?fa[u]:u);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">/* ----------- LCT part ------------*/</span></span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">access</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> f = <span class="number">0</span>; u; f = u,u = fa[u])&#123;</span><br><span class="line">            Splay(u);</span><br><span class="line">            rc = f;</span><br><span class="line">            pushup(u);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">makeroot</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;access(u);Splay(u);Reverse(u);&#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;access(u);Splay(u);<span class="keyword">while</span>(lc)pushdown(u),u=lc;<span class="keyword">return</span> u;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">split</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;makeroot(x);access(y);Splay(y);&#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">link</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;makeroot(x);fa[x]=y;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">cut</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span>&#123;split(u,v);<span class="keyword">if</span>(fa[u]==v&amp;&amp;(!rc))fa[u]=ch[v][<span class="number">0</span>]=<span class="number">0</span>;pushup(v);&#125;</span><br><span class="line">&#125;LCT;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">(<span class="keyword">signed</span> argc, <span class="keyword">char</span> *argv[])</span></span>&#123;</span><br><span class="line">    n=read(),m=read();</span><br><span class="line">    rep(i,<span class="number">1</span>,n) LCT.w[i]=read();</span><br><span class="line">    rep(i,<span class="number">1</span>,m)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> op=read(),x=read(),y=read();</span><br><span class="line">        <span class="keyword">switch</span>(op)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">0</span>:&#123;LCT.split(x,y);<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,LCT.sum[y]);<span class="keyword">break</span>;&#125;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">1</span>:&#123;<span class="keyword">if</span>(LCT.find(x) != LCT.find(y))LCT.link(x,y);<span class="keyword">break</span>;&#125;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">2</span>:&#123;<span class="keyword">if</span>(LCT.find(x) == LCT.find(y))LCT.cut(x,y);<span class="keyword">break</span>;&#125;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">3</span>:&#123;LCT.w[x]=y;LCT.Splay(x);<span class="keyword">break</span>;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>剩下的中考之后再补辣.</p>
+
       
     </div>
     
@@ -436,7 +425,7 @@ f(x)=\prod f(p_i^{k_i})</script><p>$In \space particular,p \space\space is\space
       
         <div class="post-tags">
           
-            <a href="/tags/学习笔记/" rel="tag"># -"学习笔记"</a>
+            <a href="/tags/学习笔记/" rel="tag"># 学习笔记</a>
           
         </div>
       
@@ -449,8 +438,8 @@ f(x)=\prod f(p_i^{k_i})</script><p>$In \space particular,p \space\space is\space
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/27/Mobius反演习题整理/" rel="next" title="Mobius反演习题整理">
-                <i class="fa fa-chevron-left"></i> Mobius反演习题整理
+              <a href="/2018/06/10/「Codeforces」-Educational-Round-45复盘/" rel="next" title="「Codeforces」 Educational Round 45 复盘">
+                <i class="fa fa-chevron-left"></i> 「Codeforces」 Educational Round 45 复盘
               </a>
             
           </div>
@@ -458,10 +447,6 @@ f(x)=\prod f(p_i^{k_i})</script><p>$In \space particular,p \space\space is\space
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/01/奇技淫巧-算法竞赛常数优化技巧-代码风格总结/" rel="prev" title="[奇技淫巧]算法竞赛常数优化技巧/代码风格总结">
-                [奇技淫巧]算法竞赛常数优化技巧/代码风格总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -513,17 +498,8 @@ f(x)=\prod f(p_i^{k_i})</script><p>$In \space particular,p \space\space is\space
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -672,22 +648,6 @@ f(x)=\prod f(p_i^{k_i})</script><p>$In \space particular,p \space\space is\space
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#洲阁筛食用方法"><span class="nav-number">1.</span> <span class="nav-text">洲阁筛食用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#食用范围"><span class="nav-number">1.1.</span> <span class="nav-text">食用范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#食用思想"><span class="nav-number">1.2.</span> <span class="nav-text">食用思想</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.</span> <span class="nav-text"> </span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 	<p></p>
 	<p></p>
