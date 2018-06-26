@@ -94,7 +94,7 @@
 
 
 
-  <meta name="keywords" content="-"学习笔记"," />
+  <meta name="keywords" content="学习笔记," />
 
 
 
@@ -107,19 +107,19 @@
 
 
 
-<meta name="description" content="二叉索引树Binary Index Tree（树状数组）动态的连续和查询问题,有n个元素的数组设计一个数据结构,支持以下两种操作:Add(x,d) 让A[x]增加dQuery(L,R) 计算A[L]+..+A[R]. 首先介绍一个玩意叫做lowbit(x) 对于正整数x我们定义它的二进制最右边的1的值为lowbit(x)在讲BIT之前，我们来先了解一个函数：对于任意正整数x，我们定义lowbit(">
-<meta name="keywords" content="-&quot;学习笔记&quot;">
+<meta name="description" content="终于开始磕高级数据结构了">
+<meta name="keywords" content="学习笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="区间信息的维护和查询学习笔记">
 <meta property="og:url" content="http://yoursite.com/2018/02/18/区间信息的维护和查询学习笔记/index.html">
 <meta property="og:site_name" content="karriganasta&#39;s blog">
-<meta property="og:description" content="二叉索引树Binary Index Tree（树状数组）动态的连续和查询问题,有n个元素的数组设计一个数据结构,支持以下两种操作:Add(x,d) 让A[x]增加dQuery(L,R) 计算A[L]+..+A[R]. 首先介绍一个玩意叫做lowbit(x) 对于正整数x我们定义它的二进制最右边的1的值为lowbit(x)在讲BIT之前，我们来先了解一个函数：对于任意正整数x，我们定义lowbit(">
+<meta property="og:description" content="终于开始磕高级数据结构了">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/02/18/区间信息的维护和查询学习笔记/1.jpg">
-<meta property="og:updated_time" content="2018-02-19T14:34:08.000Z">
+<meta property="og:updated_time" content="2018-06-26T08:07:34.618Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="区间信息的维护和查询学习笔记">
-<meta name="twitter:description" content="二叉索引树Binary Index Tree（树状数组）动态的连续和查询问题,有n个元素的数组设计一个数据结构,支持以下两种操作:Add(x,d) 让A[x]增加dQuery(L,R) 计算A[L]+..+A[R]. 首先介绍一个玩意叫做lowbit(x) 对于正整数x我们定义它的二进制最右边的1的值为lowbit(x)在讲BIT之前，我们来先了解一个函数：对于任意正整数x，我们定义lowbit(">
+<meta name="twitter:description" content="终于开始磕高级数据结构了">
 <meta name="twitter:image" content="http://yoursite.com/2018/02/18/区间信息的维护和查询学习笔记/1.jpg">
 
 
@@ -366,7 +366,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  4,332字
+                  4,344字
                 </span>
               
 
@@ -403,7 +403,9 @@
       
 
       
-        <h2 id="二叉索引树Binary-Index-Tree（树状数组）"><a href="#二叉索引树Binary-Index-Tree（树状数组）" class="headerlink" title="二叉索引树Binary Index Tree（树状数组）"></a>二叉索引树Binary Index Tree（树状数组）</h2><p>动态的连续和查询问题,有n个元素的数组<br>设计一个数据结构,支持以下两种操作:<br>Add(x,d) 让A[x]增加d<br>Query(L,R) 计算A[L]+..+A[R].</p>
+        <p>终于开始磕高级数据结构了</p>
+<a id="more"></a>
+<h2 id="二叉索引树Binary-Index-Tree（树状数组）"><a href="#二叉索引树Binary-Index-Tree（树状数组）" class="headerlink" title="二叉索引树Binary Index Tree（树状数组）"></a>二叉索引树Binary Index Tree（树状数组）</h2><p>动态的连续和查询问题,有n个元素的数组<br>设计一个数据结构,支持以下两种操作:<br>Add(x,d) 让A[x]增加d<br>Query(L,R) 计算A[L]+..+A[R].</p>
 <p>首先介绍一个玩意叫做lowbit(x)</p>
 <p>对于正整数x我们定义它的二进制最右边的1的值为lowbit(x)<br>在讲BIT之前，我们来先了解一个函数：对于任意正整数x，我们定义lowbit(x)为x的二进制中最右边的1所对应的值，比如，5的二进制是101，那么lowbit(5)= 1；4的二进制是100，那么lowbit(4) = 4；这里用到的是按位运算，请读者自己去查阅关于这点的资料。但为什么呢？计算机里面的整数采用补码表示，-x实际上是x在二进制中按位取反，末位+1后的结果，二者按位取“与”之后，前面全部变成0，之后的lowbit保持不变。</p>
 <p>简单的两个操作如下<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">500010</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,a[maxn],C[maxn];</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lowbit(x) (x&amp;-x)</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(x)</span><br><span class="line">	&#123;</span><br><span class="line">		ret += C[x];</span><br><span class="line">		x -= lowbit(x);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> d)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(x &lt;= n)</span><br><span class="line">	&#123;</span><br><span class="line">		C[x] += d;</span><br><span class="line">		x += lowbit(x);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;<span class="keyword">return</span> (sum(r)-sum(l<span class="number">-1</span>));&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(C,<span class="number">0</span>,<span class="keyword">sizeof</span>(C));</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> x;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;x);</span><br><span class="line">		a[i] = x;</span><br><span class="line">		add(i,x);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(m--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> x,y;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;x,&amp;y);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,query(x,y));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -454,7 +456,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/学习笔记/" rel="tag"># -"学习笔记"</a>
+            <a href="/tags/学习笔记/" rel="tag"># 学习笔记</a>
           
         </div>
       
@@ -560,7 +562,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -582,7 +584,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -757,7 +759,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">48.0k</span>
+    <span title="Site words total count">50.7k</span>
   
 </div>
 

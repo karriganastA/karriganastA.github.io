@@ -107,18 +107,18 @@
 
 
 
-<meta name="description" content="题面传送门:UVa-10870题目大意:给出F(n)的递推式,求出F(n)%m的值。 Consider recurrent functions of the following form:f(n) = a1f(n − 1) + a2f(n − 2) + a3f(n − 3) + . . . + adf(n − d), for n &amp;gt; d,where a1, a2, . . . , ad ar">
+<meta name="description" content="题面传送门:UVa-10870题目大意:给出F(n)的递推式,求出F(n)%m的值。">
 <meta name="keywords" content="-&quot;解题报告&quot;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[UVa-10870] Recurrences(矩阵构造与快速幂)">
 <meta property="og:url" content="http://yoursite.com/2018/02/12/UVa-10870-Recurrences-矩阵构造与快速幂/index.html">
 <meta property="og:site_name" content="karriganasta&#39;s blog">
-<meta property="og:description" content="题面传送门:UVa-10870题目大意:给出F(n)的递推式,求出F(n)%m的值。 Consider recurrent functions of the following form:f(n) = a1f(n − 1) + a2f(n − 2) + a3f(n − 3) + . . . + adf(n − d), for n &amp;gt; d,where a1, a2, . . . , ad ar">
+<meta property="og:description" content="题面传送门:UVa-10870题目大意:给出F(n)的递推式,求出F(n)%m的值。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-14T11:05:28.000Z">
+<meta property="og:updated_time" content="2018-06-26T07:18:14.922Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[UVa-10870] Recurrences(矩阵构造与快速幂)">
-<meta name="twitter:description" content="题面传送门:UVa-10870题目大意:给出F(n)的递推式,求出F(n)%m的值。 Consider recurrent functions of the following form:f(n) = a1f(n − 1) + a2f(n − 2) + a3f(n − 3) + . . . + adf(n − d), for n &amp;gt; d,where a1, a2, . . . , ad ar">
+<meta name="twitter:description" content="题面传送门:UVa-10870题目大意:给出F(n)的递推式,求出F(n)%m的值。">
 
 
 
@@ -402,6 +402,7 @@
 
       
         <h2 id="题面"><a href="#题面" class="headerlink" title="题面"></a>题面</h2><p>传送门:<a href="https://vjudge.net/problem/UVA-10870" target="_blank" rel="noopener">UVa-10870</a><br>题目大意:给出F(n)的递推式,求出F(n)%m的值。</p>
+<a id="more"></a>
 <p>Consider recurrent functions of the following form:<br>f(n) = a1f(n − 1) + a2f(n − 2) + a3f(n − 3) + . . . + adf(n − d), for n &gt; d,<br>where a1, a2, . . . , ad are arbitrary constants.<br>A famous example is the Fibonacci sequence, defined as: f(1) = 1, f(2) = 1, f(n) = f(n − 1) +f(n − 2). Here d = 2, a1 = 1, a2 = 1.</p>
 <p>Every such function is completely described by specifying d (which is called the order of recurrence),values of d coefficients: a1, a2, . . . , ad, and values of f(1), f(2), . . . , f(d). You’ll be given these numbers,and two integers n and m. Your program’s job is to compute f(n) modulo m.<br>Input<br>Input file contains several test cases. Each test case begins with three integers: d, n, m, followed bytwo sets of d non-negative integers. The first set contains coefficients: a1, a2, . . . , ad. The second set gives values of f(1), f(2), . . . , f(d).<br>You can assume that: 1 ≤ d ≤ 15, 1 ≤ n ≤ 2^31-1，1 ≤ m ≤ 46340. All numbers in the input will fit in signed 32-bit integer.<br>Input is terminated by line containing three zeroes instead of d, n, m. Two consecutive test cases<br>are separated by a blank line.<br>Output<br>For each test case, print the value of f(n)( mod m) on a separate line. It must be a non-negative integer,<br>less than m.</p>
 <h2 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h2><p>Sample Input<br>1 1 100<br>2<br>1<br>2 10 100<br>1 1<br>1 1<br>3 2147483647 12345<br>12345678 0 12345<br>1 2 3<br>0 0 0<br>Sample Output<br>1<br>55<br>423</p>
@@ -559,7 +560,7 @@ O(d^3log_2n)</script><p>这便是正解了。qwq</p>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -581,7 +582,7 @@ O(d^3log_2n)</script><p>这便是正解了。qwq</p>
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -756,7 +757,7 @@ O(d^3log_2n)</script><p>这便是正解了。qwq</p>
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">48.0k</span>
+    <span title="Site words total count">50.7k</span>
   
 </div>
 

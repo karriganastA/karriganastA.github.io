@@ -107,19 +107,19 @@
 
 
 
-<meta name="description" content="题面传送门:LA-5902 题目大意:有n个物品从上到下放置,并且标号1..n,有n次查询,每次查询标号为x的物品现在的位置（0..n,即该物品上面有多少个物品）,同时将该物品取出放到第0号位置。 样例123456789Sample Input23 33 1 15 34 4 5Sample Output2 1 03 0 4 思路还是不难想到的,将1~n件物品重新编号,1~n标为n~1,每次拿出一件">
+<meta name="description" content="题面传送门:LA-5902 题目大意:有n个物品从上到下放置,并且标号1..n,有n次查询,每次查询标号为x的物品现在的位置（0..n,即该物品上面有多少个物品）,同时将该物品取出放到第0号位置。">
 <meta name="keywords" content="-&quot;解题报告&quot;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[LA-5902] Movie Collection Fenwick树">
 <meta property="og:url" content="http://yoursite.com/2018/02/22/LA-5902-Movie-Collection-Fenwick树/index.html">
 <meta property="og:site_name" content="karriganasta&#39;s blog">
-<meta property="og:description" content="题面传送门:LA-5902 题目大意:有n个物品从上到下放置,并且标号1..n,有n次查询,每次查询标号为x的物品现在的位置（0..n,即该物品上面有多少个物品）,同时将该物品取出放到第0号位置。 样例123456789Sample Input23 33 1 15 34 4 5Sample Output2 1 03 0 4 思路还是不难想到的,将1~n件物品重新编号,1~n标为n~1,每次拿出一件">
+<meta property="og:description" content="题面传送门:LA-5902 题目大意:有n个物品从上到下放置,并且标号1..n,有n次查询,每次查询标号为x的物品现在的位置（0..n,即该物品上面有多少个物品）,同时将该物品取出放到第0号位置。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/02/22/LA-5902-Movie-Collection-Fenwick树/1.jpg">
-<meta property="og:updated_time" content="2018-02-22T12:42:25.000Z">
+<meta property="og:updated_time" content="2018-06-26T07:16:14.184Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[LA-5902] Movie Collection Fenwick树">
-<meta name="twitter:description" content="题面传送门:LA-5902 题目大意:有n个物品从上到下放置,并且标号1..n,有n次查询,每次查询标号为x的物品现在的位置（0..n,即该物品上面有多少个物品）,同时将该物品取出放到第0号位置。 样例123456789Sample Input23 33 1 15 34 4 5Sample Output2 1 03 0 4 思路还是不难想到的,将1~n件物品重新编号,1~n标为n~1,每次拿出一件">
+<meta name="twitter:description" content="题面传送门:LA-5902 题目大意:有n个物品从上到下放置,并且标号1..n,有n次查询,每次查询标号为x的物品现在的位置（0..n,即该物品上面有多少个物品）,同时将该物品取出放到第0号位置。">
 <meta name="twitter:image" content="http://yoursite.com/2018/02/22/LA-5902-Movie-Collection-Fenwick树/1.jpg">
 
 
@@ -405,6 +405,7 @@
       
         <h2 id="题面"><a href="#题面" class="headerlink" title="题面"></a>题面</h2><p>传送门:<a href="https://vjudge.net/problem/UVALive-5902" target="_blank" rel="noopener">LA-5902</a></p>
 <p>题目大意:有<script type="math/tex">n</script>个物品从上到下放置,并且标号<script type="math/tex">1..n</script>,有<script type="math/tex">n</script>次查询,每次查询标号为<script type="math/tex">x</script>的物品现在的位置（<script type="math/tex">0..n</script>,即该物品上面有多少个物品）,同时将该物品取出放到第<script type="math/tex">0</script>号位置。</p>
+<a id="more"></a>
 <h2 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Sample Input</span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span> <span class="number">3</span></span><br><span class="line"><span class="number">3</span> <span class="number">1</span> <span class="number">1</span></span><br><span class="line"><span class="number">5</span> <span class="number">3</span></span><br><span class="line"><span class="number">4</span> <span class="number">4</span> <span class="number">5</span></span><br><span class="line">Sample Output</span><br><span class="line"><span class="number">2</span> <span class="number">1</span> <span class="number">0</span></span><br><span class="line"><span class="number">3</span> <span class="number">0</span> <span class="number">4</span></span><br></pre></td></tr></table></figure>
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>还是不难想到的,将1~n件物品重新编号,1~n标为n~1,每次拿出一件物品x,再将其重新编号,如果是第一次拿出就标为n+1…..依次递增,然后将之前的编号删掉,插入新的编号即可，用一个树状数组维护</p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">2</span>*<span class="number">1e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lowbit(x) (x&amp;-x)</span></span><br><span class="line"><span class="keyword">int</span> T,n,m;</span><br><span class="line"><span class="keyword">int</span> pos[maxn],c[maxn];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(<span class="keyword">int</span> &amp;x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	x=<span class="number">0</span>;<span class="keyword">char</span> ch=getchar();<span class="keyword">int</span> f=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch))&#123;<span class="keyword">if</span>(ch==<span class="string">'-'</span>)f=<span class="number">-1</span>;ch=getchar();&#125;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))&#123;x=x*<span class="number">10</span>+ch-<span class="string">'0'</span>;ch=getchar();&#125;</span><br><span class="line">	x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(x)&#123;ret+=c[x];x-=lowbit(x);&#125;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> d)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(x&lt;=maxn)</span><br><span class="line">	&#123;</span><br><span class="line">		c[x]+=d;</span><br><span class="line">		x+=lowbit(x);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	read(T);</span><br><span class="line">	<span class="keyword">while</span>(T--)</span><br><span class="line">	&#123;</span><br><span class="line">		read(n),read(m);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">		pos[i] = n + <span class="number">1</span> - i;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; maxn; i++)</span><br><span class="line">		c[i] = lowbit(i);</span><br><span class="line">		<span class="keyword">int</span> t = n;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> id;</span><br><span class="line">			read(id);</span><br><span class="line">			<span class="keyword">if</span> (i != <span class="number">0</span>) <span class="built_in">printf</span>(<span class="string">" "</span>);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%d"</span>,n-sum(pos[id]));</span><br><span class="line">			add(pos[id],<span class="number">-1</span>);</span><br><span class="line">			pos[id] = ++t;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -534,7 +535,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -556,7 +557,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -731,7 +732,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">48.0k</span>
+    <span title="Site words total count">50.7k</span>
   
 </div>
 
