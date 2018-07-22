@@ -107,18 +107,18 @@
 
 
 
-<meta name="description" content="题面传送门:UVa-10375题目大意:给出p,q,r,s,求出C(p,q)/C(r,s)的值,其中p,q,r,s∈[1,10000]；且p &amp;gt;= q,r &amp;gt;= s;">
+<meta name="description" content="Links there:ZOJ3626">
 <meta name="keywords" content="解题报告">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[UVa-10375] Choose and divide">
-<meta property="og:url" content="http://yoursite.com/2018/02/10/UVa-10375-Choose-and-divide/index.html">
+<meta property="og:title" content="「ZOJ3626」Treasure Hunt I 树上背包">
+<meta property="og:url" content="http://yoursite.com/2018/07/22/「ZOJ3626」Treasure-Hunt-I-树上背包/index.html">
 <meta property="og:site_name" content="karriganasta&#39;s blog">
-<meta property="og:description" content="题面传送门:UVa-10375题目大意:给出p,q,r,s,求出C(p,q)/C(r,s)的值,其中p,q,r,s∈[1,10000]；且p &amp;gt;= q,r &amp;gt;= s;">
+<meta property="og:description" content="Links there:ZOJ3626">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-21T10:39:04.755Z">
+<meta property="og:updated_time" content="2018-07-22T02:18:09.841Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[UVa-10375] Choose and divide">
-<meta name="twitter:description" content="题面传送门:UVa-10375题目大意:给出p,q,r,s,求出C(p,q)/C(r,s)的值,其中p,q,r,s∈[1,10000]；且p &amp;gt;= q,r &amp;gt;= s;">
+<meta name="twitter:title" content="「ZOJ3626」Treasure Hunt I 树上背包">
+<meta name="twitter:description" content="Links there:ZOJ3626">
 
 
 
@@ -148,13 +148,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/02/10/UVa-10375-Choose-and-divide/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/22/「ZOJ3626」Treasure-Hunt-I-树上背包/"/>
 
 
 
 
 
-  <title>[UVa-10375] Choose and divide | karriganasta's blog</title>
+  <title>「ZOJ3626」Treasure Hunt I 树上背包 | karriganasta's blog</title>
   
 
 
@@ -312,7 +312,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/10/UVa-10375-Choose-and-divide/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/22/「ZOJ3626」Treasure-Hunt-I-树上背包/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="karriganasta">
@@ -329,7 +329,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">[UVa-10375] Choose and divide</h1>
+          <h1 class="post-title" itemprop="name headline">「ZOJ3626」Treasure Hunt I 树上背包</h1>
         
 
         <div class="post-meta">
@@ -342,8 +342,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-10T11:10:26+08:00">
-                2018-02-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-22T10:12:04+08:00">
+                2018-07-22
               </time>
             
 
@@ -365,8 +365,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数学/" itemprop="url" rel="index">
-                    <span itemprop="name">数学</span>
+                  <a href="/categories/DP-树形DP/" itemprop="url" rel="index">
+                    <span itemprop="name">DP-树形DP</span>
                   </a>
                 </span>
 
@@ -396,7 +396,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  368字
+                  536字
                 </span>
               
 
@@ -412,7 +412,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2分钟
+                  3分钟
                 </span>
               
             </div>
@@ -433,11 +433,14 @@
       
 
       
-        <h2 id="题面"><a href="#题面" class="headerlink" title="题面"></a>题面</h2><p>传送门:<a href="https://vjudge.net/problem/UVA-10375" target="_blank" rel="noopener">UVa-10375</a><br>题目大意:给出p,q,r,s,求出C(p,q)/C(r,s)的值,其中p,q,r,s∈[1,10000]；且p &gt;= q,r &gt;= s;</p>
+        <p>Links there:<a href="http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=3626" target="_blank" rel="noopener">ZOJ3626</a></p>
 <a id="more"></a>
-<h2 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h2><p>Sample Input<br>10 5 14 9<br>93 45 84 59<br>145 95 143 92<br>995 487 996 488<br>2000 1000 1999 999<br>9998 4999 9996 4998<br>Sample Output<br>0.12587<br>505606.46055<br>1.28223<br>0.48996<br>2.00000<br>3.99960</p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>先预处理1W以内的质数集合prime[],<br>然后唯一分解定理,用pf[i]记录每个质数要乘或者除的个数,最后pow一遍即可.</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">10001</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> prime[maxn],cnt = <span class="number">0</span>,pf[maxn];</span><br><span class="line"><span class="keyword">bool</span> is_prime[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Euler_Prime</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(is_prime,<span class="number">1</span>,<span class="keyword">sizeof</span>(is_prime));</span><br><span class="line">	is_prime[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= x; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (is_prime[i]) prime[++cnt] = i;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= cnt &amp;&amp; i *prime[j] &lt;= x; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			is_prime[i*prime[j]] = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">if</span> (i % prime[j] == <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">work</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> d)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= cnt; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">while</span>(n % prime[i] == <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			n /= prime[i];</span><br><span class="line">			pf[i] += d;		</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (n == <span class="number">1</span>) <span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> d)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> q = <span class="number">1</span>; q &lt;= n; q++)</span><br><span class="line">		work(q,d);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Euler_Prime(<span class="number">10000</span>);</span><br><span class="line">	<span class="keyword">int</span> p,q,r,s;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d %d %d %d"</span>,&amp;p,&amp;q,&amp;r,&amp;s) == <span class="number">4</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">double</span> ans = <span class="number">1.0</span>;</span><br><span class="line">		<span class="built_in">memset</span>(pf,<span class="number">0</span>,<span class="keyword">sizeof</span>(pf));</span><br><span class="line">		update(p,<span class="number">1</span>); update(q,<span class="number">-1</span>);update(p-q,<span class="number">-1</span>);</span><br><span class="line">		update(r,<span class="number">-1</span>);update(s,<span class="number">1</span>); update(r-s,<span class="number">1</span>);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= cnt; i++)</span><br><span class="line">		ans *= <span class="built_in">pow</span>(prime[i],pf[i]);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%.5lf\n"</span>,ans);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>给一棵树每条边上有花费值$cost_i$,每个点上有权值$w_i$,求以$k$为起点,花费小于$m$,并最终回到起点$k$,能得到的最大权值</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>树上的背包dp</p>
+<p>令$f[i][j]$表示从$i$为起点,花费$j$所可以得到的最大权值.有两种决策对于$i$的孩子$v$,要么不走,要么花费$cost_{i \space to \space v}$</p>
+<p>所以有$f[i][j]=max(f[i][j],f[v][k]+f[i][j-cost-k])$</p>
+<h3 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//my vegetable has exploded. :(</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> max(x,y) (x&gt;y?x:y)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> min(x,y) (x&lt;y?x:y)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MM(x,y) memset(x,y,sizeof(x))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MCPY(a,b) memcpy(a,b,sizeof(b))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rep(i,a,b) for(int i=a;i&lt;=b;i++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> per(i,b,a) for(int i=b;i&gt;=a;i--)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> se second</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> int long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">quickpow</span><span class="params">(<span class="keyword">int</span> m,<span class="keyword">int</span> n,<span class="keyword">int</span> p)</span></span>&#123;<span class="keyword">int</span> b=<span class="number">1</span>;<span class="keyword">while</span>(n)&#123;<span class="keyword">if</span>(n&amp;<span class="number">1</span>)b=b*m%p;n=n&gt;&gt;<span class="number">1</span>;m=m*m%p;&#125;<span class="keyword">return</span> b;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">getinv</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> p)</span></span>&#123;<span class="keyword">return</span> quickpow(x,p<span class="number">-2</span>,p);&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x=<span class="number">0</span>,f=<span class="number">1</span>;<span class="keyword">char</span> ch=getchar();</span><br><span class="line">	<span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch))&#123;f=ch==<span class="string">'-'</span>?<span class="number">-1</span>:<span class="number">1</span>;ch=getchar();&#125;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))&#123;x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+ch-<span class="string">'0'</span>;ch=getchar();&#125;</span><br><span class="line">	<span class="keyword">return</span> x * f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">110</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edges</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> to,nxt,cost;</span><br><span class="line">&#125;E[MAXN&lt;&lt;<span class="number">1</span>];</span><br><span class="line"><span class="keyword">int</span> n,m,k,head[MAXN],w[MAXN],vis[MAXN],cnt,ans;</span><br><span class="line"><span class="keyword">int</span> f[MAXN][<span class="number">2010</span>];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">addedge</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v,<span class="keyword">int</span> w)</span></span>&#123;</span><br><span class="line">    E[++cnt].nxt = head[u]; E[cnt].to = v; E[cnt].cost = w; head[u] = cnt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">    vis[u]=<span class="number">1</span>;</span><br><span class="line">    f[u][<span class="number">0</span>] = w[u];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; i; i = E[i].nxt)&#123;</span><br><span class="line">        <span class="keyword">int</span> v = E[i].to,cost = E[i].cost;</span><br><span class="line">        <span class="keyword">if</span> (!vis[v]) &#123;</span><br><span class="line">            dfs(v);</span><br><span class="line">            per(j,m,<span class="number">0</span>) rep(k,<span class="number">0</span>,j-cost)</span><br><span class="line">            f[u][j]=max(f[v][k]+f[u][j-k-cost],f[u][j]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">///------------------head------------------</span></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">(<span class="keyword">signed</span> argc, <span class="keyword">char</span> *argv[])</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;n) == <span class="number">1</span>)&#123;</span><br><span class="line">        cnt=<span class="number">0</span>;ans=<span class="number">-1</span>;MM(vis,<span class="number">0</span>);MM(head,<span class="number">0</span>);MM(f,<span class="number">0</span>);</span><br><span class="line">        rep(i,<span class="number">1</span>,n) w[i]=read();</span><br><span class="line">        rep(i,<span class="number">1</span>,n<span class="number">-1</span>) &#123;<span class="keyword">int</span> u=read(),v=read(),w=read(); addedge(u,v,w); addedge(v,u,w);&#125;</span><br><span class="line">        k=read(),m=read()&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        dfs(k);</span><br><span class="line">        rep(i,<span class="number">0</span>,m) ans=max(ans,f[k][i]);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -467,8 +470,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/09/UVa-11582-Fibonacci数列f-a-b-n的值/" rel="next" title="UVa-11582-Fibonacci数列f(a^b)%n的值">
-                <i class="fa fa-chevron-left"></i> UVa-11582-Fibonacci数列f(a^b)%n的值
+              <a href="/2018/07/21/「CF1006F」Xor-Paths-Meet-in-the-middle/" rel="next" title="「CF1006F」Xor-Paths Meet-in-the-middle">
+                <i class="fa fa-chevron-left"></i> 「CF1006F」Xor-Paths Meet-in-the-middle
               </a>
             
           </div>
@@ -477,8 +480,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/02/10/UVa-10791-Minimum-Sum-LCM/" rel="prev" title="[UVa-10791 Minimum Sum LCM]">
-                [UVa-10791 Minimum Sum LCM] <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/22/「CF696B」Puzzles-树上期望DP/" rel="prev" title="「CF696B」Puzzles 树上期望DP">
+                「CF696B」Puzzles 树上期望DP <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -705,7 +708,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题面"><span class="nav-number">1.</span> <span class="nav-text">题面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样例"><span class="nav-number">2.</span> <span class="nav-text">样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">3.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">4.</span> <span class="nav-text">代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题意"><span class="nav-number">1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Code"><span class="nav-number">3.</span> <span class="nav-text">Code</span></a></li></ol></div>
             
 
           </div>
