@@ -94,7 +94,7 @@
 
 
 
-  <meta name="keywords" content="解题报告," />
+  <meta name="keywords" content="学习笔记," />
 
 
 
@@ -107,20 +107,18 @@
 
 
 
-<meta name="description" content="题面传送门:LA-5902 题目大意:有n个物品从上到下放置,并且标号1..n,有n次查询,每次查询标号为x的物品现在的位置（0..n,即该物品上面有多少个物品）,同时将该物品取出放到第0号位置。">
-<meta name="keywords" content="解题报告">
+<meta name="description" content="后缀自动机 Suffix Automaton (SAM)">
+<meta name="keywords" content="学习笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[LA-5902] Movie Collection Fenwick树">
-<meta property="og:url" content="http://yoursite.com/2018/02/22/LA-5902-Movie-Collection-Fenwick树/index.html">
+<meta property="og:title" content="Suffix Automaton 后缀自动机学习笔记">
+<meta property="og:url" content="http://yoursite.com/2018/08/09/Suffix-Automaton-后缀自动机学习笔记/index.html">
 <meta property="og:site_name" content="karriganasta&#39;s blog">
-<meta property="og:description" content="题面传送门:LA-5902 题目大意:有n个物品从上到下放置,并且标号1..n,有n次查询,每次查询标号为x的物品现在的位置（0..n,即该物品上面有多少个物品）,同时将该物品取出放到第0号位置。">
+<meta property="og:description" content="后缀自动机 Suffix Automaton (SAM)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2018/02/22/LA-5902-Movie-Collection-Fenwick树/1.jpg">
-<meta property="og:updated_time" content="2018-07-21T10:33:05.862Z">
+<meta property="og:updated_time" content="2018-08-08T22:32:56.998Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[LA-5902] Movie Collection Fenwick树">
-<meta name="twitter:description" content="题面传送门:LA-5902 题目大意:有n个物品从上到下放置,并且标号1..n,有n次查询,每次查询标号为x的物品现在的位置（0..n,即该物品上面有多少个物品）,同时将该物品取出放到第0号位置。">
-<meta name="twitter:image" content="http://yoursite.com/2018/02/22/LA-5902-Movie-Collection-Fenwick树/1.jpg">
+<meta name="twitter:title" content="Suffix Automaton 后缀自动机学习笔记">
+<meta name="twitter:description" content="后缀自动机 Suffix Automaton (SAM)">
 
 
 
@@ -150,13 +148,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/02/22/LA-5902-Movie-Collection-Fenwick树/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/09/Suffix-Automaton-后缀自动机学习笔记/"/>
 
 
 
 
 
-  <title>[LA-5902] Movie Collection Fenwick树 | karriganasta's blog</title>
+  <title>Suffix Automaton 后缀自动机学习笔记 | karriganasta's blog</title>
   
 
 
@@ -314,7 +312,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/22/LA-5902-Movie-Collection-Fenwick树/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/09/Suffix-Automaton-后缀自动机学习笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="karriganasta">
@@ -331,7 +329,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">[LA-5902] Movie Collection Fenwick树</h1>
+          <h1 class="post-title" itemprop="name headline">Suffix Automaton 后缀自动机学习笔记</h1>
         
 
         <div class="post-meta">
@@ -344,8 +342,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-22T19:54:26+08:00">
-                2018-02-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-09T06:29:41+08:00">
+                2018-08-09
               </time>
             
 
@@ -367,8 +365,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/线段树/" itemprop="url" rel="index">
-                    <span itemprop="name">线段树</span>
+                  <a href="/categories/字符串/" itemprop="url" rel="index">
+                    <span itemprop="name">字符串</span>
                   </a>
                 </span>
 
@@ -398,7 +396,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  413字
+                  1,333字
                 </span>
               
 
@@ -414,7 +412,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2分钟
+                  6分钟
                 </span>
               
             </div>
@@ -435,15 +433,61 @@
       
 
       
-        <h2 id="题面"><a href="#题面" class="headerlink" title="题面"></a>题面</h2><p>传送门:<a href="https://vjudge.net/problem/UVALive-5902" target="_blank" rel="noopener">LA-5902</a></p>
-<p>题目大意:有<script type="math/tex">n</script>个物品从上到下放置,并且标号<script type="math/tex">1..n</script>,有<script type="math/tex">n</script>次查询,每次查询标号为<script type="math/tex">x</script>的物品现在的位置（<script type="math/tex">0..n</script>,即该物品上面有多少个物品）,同时将该物品取出放到第<script type="math/tex">0</script>号位置。</p>
-<a id="more"></a>
-<h2 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Sample Input</span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span> <span class="number">3</span></span><br><span class="line"><span class="number">3</span> <span class="number">1</span> <span class="number">1</span></span><br><span class="line"><span class="number">5</span> <span class="number">3</span></span><br><span class="line"><span class="number">4</span> <span class="number">4</span> <span class="number">5</span></span><br><span class="line">Sample Output</span><br><span class="line"><span class="number">2</span> <span class="number">1</span> <span class="number">0</span></span><br><span class="line"><span class="number">3</span> <span class="number">0</span> <span class="number">4</span></span><br></pre></td></tr></table></figure>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>还是不难想到的,将1~n件物品重新编号,1~n标为n~1,每次拿出一件物品x,再将其重新编号,如果是第一次拿出就标为n+1…..依次递增,然后将之前的编号删掉,插入新的编号即可，用一个树状数组维护</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">2</span>*<span class="number">1e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lowbit(x) (x&amp;-x)</span></span><br><span class="line"><span class="keyword">int</span> T,n,m;</span><br><span class="line"><span class="keyword">int</span> pos[maxn],c[maxn];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(<span class="keyword">int</span> &amp;x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	x=<span class="number">0</span>;<span class="keyword">char</span> ch=getchar();<span class="keyword">int</span> f=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch))&#123;<span class="keyword">if</span>(ch==<span class="string">'-'</span>)f=<span class="number">-1</span>;ch=getchar();&#125;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))&#123;x=x*<span class="number">10</span>+ch-<span class="string">'0'</span>;ch=getchar();&#125;</span><br><span class="line">	x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(x)&#123;ret+=c[x];x-=lowbit(x);&#125;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> d)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(x&lt;=maxn)</span><br><span class="line">	&#123;</span><br><span class="line">		c[x]+=d;</span><br><span class="line">		x+=lowbit(x);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	read(T);</span><br><span class="line">	<span class="keyword">while</span>(T--)</span><br><span class="line">	&#123;</span><br><span class="line">		read(n),read(m);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">		pos[i] = n + <span class="number">1</span> - i;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; maxn; i++)</span><br><span class="line">		c[i] = lowbit(i);</span><br><span class="line">		<span class="keyword">int</span> t = n;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> id;</span><br><span class="line">			read(id);</span><br><span class="line">			<span class="keyword">if</span> (i != <span class="number">0</span>) <span class="built_in">printf</span>(<span class="string">" "</span>);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%d"</span>,n-sum(pos[id]));</span><br><span class="line">			add(pos[id],<span class="number">-1</span>);</span><br><span class="line">			pos[id] = ++t;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>一看Rank榜是第一.</p>
-<p>窃喜</p>
-<p><img src="/2018/02/22/LA-5902-Movie-Collection-Fenwick树/1.jpg" alt="Markdown"></p>
+        <h2 id="后缀自动机-Suffix-Automaton-SAM"><a href="#后缀自动机-Suffix-Automaton-SAM" class="headerlink" title="后缀自动机 Suffix Automaton (SAM)"></a>后缀自动机 Suffix Automaton (SAM)</h2><a id="more"></a>
+<h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>后缀自动机，本质上是关于单词的有向无环图，是一种强有力的数据结构，可以在$O(n)$的时间内构造完成并辅助解决很多字符串问题。它也可以被理解为一个长度为$N$的字符串的压缩之后存起来的信息。</p>
+<p>后缀自动机是陈老师<code>WJMZBMR</code>首次引进国内OI圈的，陈老师的论文全是干货。</p>
+<h3 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h3><h4 id="一些说明"><a href="#一些说明" class="headerlink" title="一些说明"></a>一些说明</h4><p>$Status(str)$表示$trans(init,str)$</p>
+<p>$Reg(s)$表示从状态$s$开始可以识别的$string$(后缀集合)</p>
+<p>下面这一段是关于$Reg(s)$的解释</p>
+<p>什么是$Reg(s)$? <strong>好问题</strong>!举个例子:</p>
+<p>假设现在有一个串$S = “ABCABCBD”$</p>
+<p>对于要在$S$中寻找的一个子串$S’ = “BC”$</p>
+<p>很明显出现位置的集合为${ (2,3),(5,6)}$</p>
+<p>他出现的后缀集合为${ suffix(3), suffix(6)}$</p>
+<p>对于一个$string \space a$</p>
+<script type="math/tex; mode=display">
+Reg(Status(a)) = \{ suffix(r_1),suffix(r_2) ... suffix(r_n)\}</script><p>很明显 我们只要存下了${r1,r2,…,rn}$ 就可以确定这个$Reg(Status(a))$</p>
+<p>不妨用一个集合$Right(a)$来记录这一信息</p>
+<p><strong>性质1</strong> 对于两个子串$a,b$,如果$Right(a) = Right(b)$那么$Status(a) = Status(b)$</p>
+<p><strong>性质2</strong> 一个状态$s$表示的所有子串$Right$集合相同,为$Right(s)$.</p>
+<p>所以说给定了一个$Right(s)$以及子串的长度 我们就可以唯一确定这个子串$s$.</p>
+<p><strong>性质3</strong> 一个$Right$集合和一个长度定义了一个子串。</p>
+<p><strong>性质4</strong> 对于状态$s$，使得$Right(s)$合法的子串长度是一个区间，不妨定义为$[Min(s),Max(s)]$</p>
+<p><strong>性质5</strong> $Right$集合的包含关系形成的树形结构叫做 <strong>Parent Tree</strong>      </p>
+<p>其他文献中叫做$Suffix Link$这个边是从孩子指向父亲的，和AC自动机的Fail Tree有点像</p>
+<p><strong>性质6</strong> <strong>Parent树从上往下Right集合变小，子串长度变长</strong> </p>
+<p>Parent Tree的叶子节点数$O(N)$，每个内部节点至少两个孩子，所以总结点数$O(N) $</p>
+<p><del>差不多这些就已经够了？</del></p>
+<p>一些推论</p>
+<p>可以证明，在SAM中节点数不超过$2n−2$，边数不超过$3n−3$（包括转移边和Parent Tree的边） </p>
+<p><strong>性质7</strong>$Suffix Link$从父亲指向儿子后就是$Reverse(s)$ 的$Suffix Tree$  反向字符串的<strong>后缀树</strong>！后缀树是一颗经过压缩的字典树 </p>
+<p><strong>性质8</strong> (感觉这个好神啊) 两个串的最长公共后缀,位于这两个串对应状态在$Parent$树上的最近公共祖先状态</p>
+<p>其他还有一些可以发掘啊 比如$Max$和$Min$的关系什么的…</p>
+<h3 id="建立SAM"><a href="#建立SAM" class="headerlink" title="建立SAM"></a>建立SAM</h3><p>$SAM$采用的是在线逐个加入字符的方法</p>
+<p>简单来说分这几个阶段</p>
+<ol>
+<li><p>假设当前$T$的串长度为$L$,现在新加入一个$x$</p>
+<p>$p = Status(T),Right(p) = L$</p>
+</li>
+<li><p>新建一个$np = ST(T+x)$(加法为字符串的加法)</p>
+<p>那么$p$的$Parent$祖先的$Right$集合里都有$L$</p>
+<p>向上更新$trans(v,x)$,也就是没有字符$x$的祖先都需要更新,从这个状态$last$要向当前新状态$np$添加转移</p>
+<p>也就是$trans[last].ch[x] = np$</p>
+</li>
+<li><p>分类讨论最后祖先的情况</p>
+<p>(1)如果最后查找到了$root$,也就是根节点 我们直接将它的$Parent$边连向$root$</p>
+<p>(2)找到第一个有的祖先为$p$,令$q = trans[p].ch[x]$</p>
+<p>再分类一波</p>
+<p>​    (i)如果说满足了$t[q].val=t[p].val+1$ 说明强行加入这个$L+1$不会使得$Max(q)$减小 直接连边</p>
+<p>​    (ii)不满足 我们考虑新建一个节点$nq$,$nq$本质上除了$Max$不同,其他信息均相同,将$np$,$q$的$parent$均连向$nq$</p>
+</li>
+</ol>
+<p><del>代码实现还是比较可读的吧…</del></p>
+<h4 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Sam</span>&#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">        <span class="keyword">int</span> ch[<span class="number">26</span>],par,val; <span class="comment">//par -&gt; parent | val -&gt; Max</span></span><br><span class="line">    &#125;t[N];</span><br><span class="line">    <span class="keyword">int</span> c[N],a[N],siz[N]; <span class="comment">//这一行辅助数组</span></span><br><span class="line">    <span class="keyword">int</span> sz,root,last;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;sz=root=last=<span class="number">1</span>;&#125; <span class="comment">//定义根节点为1</span></span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">ins</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> p=last,np=++sz;<span class="comment">//新建一个节点</span></span><br><span class="line">        t[np].val=t[p].val+<span class="number">1</span>;<span class="comment">//长度为上一个节点长度+1</span></span><br><span class="line">        <span class="keyword">for</span>(;p&amp;&amp;!t[p].ch[x];p=t[p].par) t[p].ch[x]=np;<span class="comment">//向上祖先更改ch[x]</span></span><br><span class="line">        <span class="keyword">if</span>(!p) t[np].par=root;<span class="comment">//如果最终为根节点直接将parent边连向root</span></span><br><span class="line">        <span class="keyword">else</span>&#123;<span class="comment">//分类讨论</span></span><br><span class="line">            <span class="keyword">int</span> q=t[p].ch[x];</span><br><span class="line">            <span class="keyword">if</span>(t[q].val==t[p].val+<span class="number">1</span>) t[np].par=q;<span class="comment">//满足Max(q) = Max(p) + 1</span></span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">int</span> nq=++sz;<span class="comment">//新建nq节点</span></span><br><span class="line">                t[nq]=t[q];<span class="comment">//拷贝节点q的信息</span></span><br><span class="line">                t[nq].val=t[p].val+<span class="number">1</span>;<span class="comment">//nq和p唯一的不同Max</span></span><br><span class="line">                t[q].par=t[np].par=nq;<span class="comment">//也是拷贝信息</span></span><br><span class="line">                <span class="keyword">for</span>(;p&amp;&amp;t[p].ch[x]==q;p=t[p].par) t[p].ch[x]=nq;<span class="comment">//拷贝信息</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        last=np;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">calc</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123; <span class="comment">//做其他事的时候可能会用</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= sz; ++i) c[t[i].val]++;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= sz; ++i) c[i] += c[i<span class="number">-1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= sz; ++i) a[--c[t[i].val]] = i; <span class="comment">//这里是基数排序对parent边作拓扑</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;sam;</span><br></pre></td></tr></table></figure>
+<h3 id="题单"><a href="#题单" class="headerlink" title="题单"></a>题单</h3><p><strong>spoj8222</strong> 后缀自动机模板(spoj8222) </p>
+<p><strong>BZOJ3998</strong> 第K大子串，维护val和sum </p>
+<p><strong>NOI2015品酒大会</strong> 用后缀自动机建出后缀树，然后就变成了后缀树裸题 </p>
+<p><strong>BZOJ4545</strong> 后缀自动机+有向LCT </p>
 
       
     </div>
@@ -461,7 +505,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/解题报告/" rel="tag"># 解题报告</a>
+            <a href="/tags/学习笔记/" rel="tag"># 学习笔记</a>
           
         </div>
       
@@ -474,8 +518,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/22/LA-4108-Skyline-线段树-树状数组-二分/" rel="next" title="[LA-4108] Skyline 线段树/树状数组+二分">
-                <i class="fa fa-chevron-left"></i> [LA-4108] Skyline 线段树/树状数组+二分
+              <a href="/2018/07/22/「CF743D」Chloe-and-pleasant-prizes/" rel="next" title="「CF743D」Chloe and pleasant prizes">
+                <i class="fa fa-chevron-left"></i> 「CF743D」Chloe and pleasant prizes
               </a>
             
           </div>
@@ -483,10 +527,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/22/UVa-12299-RMQ-with-Shifts-线段树单点修改区间查询/" rel="prev" title="[UVa-12299] RMQ with Shifts 线段树单点修改区间查询">
-                [UVa-12299] RMQ with Shifts 线段树单点修改区间查询 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -712,7 +752,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题面"><span class="nav-number">1.</span> <span class="nav-text">题面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样例"><span class="nav-number">2.</span> <span class="nav-text">样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">3.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">4.</span> <span class="nav-text">代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#后缀自动机-Suffix-Automaton-SAM"><span class="nav-number">1.</span> <span class="nav-text">后缀自动机 Suffix Automaton (SAM)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义"><span class="nav-number">1.0.1.</span> <span class="nav-text">定义</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#性质"><span class="nav-number">1.1.</span> <span class="nav-text">性质</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一些说明"><span class="nav-number">1.1.1.</span> <span class="nav-text">一些说明</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建立SAM"><span class="nav-number">1.2.</span> <span class="nav-text">建立SAM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Code"><span class="nav-number">1.2.1.</span> <span class="nav-text">Code</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题单"><span class="nav-number">1.3.</span> <span class="nav-text">题单</span></a></li></ol></li></ol></div>
             
 
           </div>
